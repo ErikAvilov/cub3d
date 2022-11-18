@@ -1,0 +1,8 @@
+jour 1 : j'installe la mlx et copie colle mon makefile depuis mon so_long, vraiment de la merde
+jour 2 : je tente des trucs avec la gestion des fps, c'est de la merde
+jour 3 : levé trop tard (absent)
+jour 4 : réadaptation du rythme (absent)
+jour 5 : j'arrives à déplacer un carré dans plusieurs directions en même temps
+jour 6 : j'ai perdu mon temps en voulant m'entraîner à faire gnl pour l'exam, vraiment un projet de merde
+jour 7 : je stock la data des pixels que je veux placer dans une image pour opti l'apparition du décor, fun mais toujours de la merde
+jour 8 : j'essaie de comprendre l'algorithme de bresehnam mais l'algo interprète la hauteur (y) à l'envers, vraiment de la merde
