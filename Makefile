@@ -6,7 +6,7 @@
 #    By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 21:52:54 by eavilov           #+#    #+#              #
-#    Updated: 2022/11/18 14:22:07 by eavilov          ###   ########.fr        #
+#    Updated: 2022/11/24 01:48:47 by eavilov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,12 @@ SRCS	= srcs/main.c \
 		srcs/mlx_init.c \
 		srcs/pressing.c \
 		srcs/init.c \
-		srcs/loop.c
+		srcs/loop.c \
+		srcs/misc.c \
+		srcs/algo1.c \
+		srcs/drawings.c \
+		srcs/mouse.c \
+		srcs/rays.c
 
 HEADER	= srcs/cub3d.h \
 		srcs/functions.h \

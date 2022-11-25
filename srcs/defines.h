@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:14:14 by eavilov           #+#    #+#             */
-/*   Updated: 2022/11/17 14:17:35 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/11/24 02:54:58 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@
 
 /*	resolutions	*/
 
-# define RES_X	860
-# define RES_Y	640
+# define RES_X	1920
+# define RES_Y	1080
 
 /*	Mouse clicks	*/
 
@@ -79,5 +79,6 @@
 /*	Other	*/
 
 # define FOV	90
+# define PI		3.14159265359
 
 #endif

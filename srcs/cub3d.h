@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 21:51:43 by eavilov           #+#    #+#             */
-/*   Updated: 2022/11/18 13:57:57 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/11/25 23:55:20 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,50 @@ typedef struct s_data
 
 typedef struct s_bresenham
 {
-	int	x1;
-	int	x2;
-	int	y1;
-	int	y2;
-	int	dx;
-	int	dy;
-	int	err;
-	int	e2;
+	int		x1;
+	int		x2;
+	int		y1;
+	int		y2;
+	int		dx;
+	int		dy;
+	int		err;
+	double	angle;
 }	t_bresenham;
 
+typedef struct s_square_tab
+{
+	int		tab[18][32];
+	int		height;
+	int		width;
+	float	x;
+	float	y;
+}	t_square_tab;
+
+typedef struct s_player
+{
+	int		pos[2];
+	float	dir[2];
+	int		view_dst;
+}	t_player;
+
+typedef struct s_vector_d
+{
+	double	x;
+	double	y;
+}	t_vector_d;
+
+typedef	struct s_vector_2d
+{
+	int		x;
+	int		y;
+}	t_vector_2d;
+
+
+typedef struct s_vector_f
+{
+	float	x;
+	float	y;
+}	t_vector_f;
 
 typedef struct s_mlx_data
 {
@@ -72,6 +106,9 @@ typedef struct s_mlx_data
 	t_mlx_moves			moves;
 	t_data				img;
 	t_bresenham			bres_val;
+	t_square_tab		tableau;
+	t_player			player;
+	t_vector_2d			vector[400];
 }	t_mlx_data;
 
 #endif
