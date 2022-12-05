@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:14:14 by eavilov           #+#    #+#             */
-/*   Updated: 2022/11/24 02:54:58 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/05 09:56:52 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,14 @@
 
 /*	resolutions	*/
 
-# define RES_X	1920
-# define RES_Y	1080
+# define RES_X	800
+# define RES_Y	600
 
 /*	Mouse clicks	*/
 
 # define LMB	1
 # define RMB	2
+# define MMB	3
 
 /*	Other	*/
 

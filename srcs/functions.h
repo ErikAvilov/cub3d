@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:52:21 by eavilov           #+#    #+#             */
-/*   Updated: 2022/11/25 23:00:43 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/03 09:22:12 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,14 @@ void		init_bresenham(t_mlx_data *mlx_data, int x, int y);
 void		init_angle(t_mlx_data *mlx_data);
 
 void		update_angle(t_mlx_data *mlx_data, int direction);
+double		find_angle(t_mlx_data *mlx_data, int x, int y);
 
-void		bottom_right(t_mlx_data *mlx_data, int x, int y, int color);
 void		bottom_left(t_mlx_data *mlx_data, int x, int y, int color);
+void		bottom_right(t_mlx_data *mlx_data, int x, int y, int color);
 void		top_left(t_mlx_data *mlx_data, int x, int y, int color);
 void		top_right(t_mlx_data *mlx_data, int x, int y, int color);
 
+t_vector_2d	vision_limit(t_vector_2d origin, double angle, int limit);
 t_vector_2d	dda(t_mlx_data *mlx_data, int x, int y);
 
 #endif

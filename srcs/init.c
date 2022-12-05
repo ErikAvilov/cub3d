@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 13:52:42 by eavilov           #+#    #+#             */
-/*   Updated: 2022/11/25 23:18:21 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/05 12:30:29 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	collided(t_mlx_data *mlx_data, int x, int y)
 {
 	t_vector_2d		cell;
 	
-	cell.x = x / 60;
-	cell.y = y / 60;
+	cell.x = x / 40;
+	cell.y = y / 40;
 	if (mlx_data->tableau.tab[cell.y][cell.x] == 1)
 		return (1);
 	return (0);
@@ -33,15 +33,17 @@ int	collided(t_mlx_data *mlx_data, int x, int y)
 
 t_vector_2d	dda(t_mlx_data *mlx_data, int x, int y)
 {
-	t_vector_2d	origin = {RES_X * 0.5, RES_Y * 0.5};
+	t_vector_2d	origin = {mlx_data->player.pos[0], mlx_data->player.pos[1]};
 	
 	t_vector_2d	map = origin;
-	t_vector_f	dir = {x - (RES_X * 0.5), y - (RES_Y * 0.5)};
-	
-	
+	t_vector_f	dir = {x - origin.x, y - origin.y};
+	double		angle = find_angle(mlx_data, x, y);
+	t_vector_2d	limit = vision_limit(origin, angle, 300);
+
 	t_vector_f	side;
 	t_vector_f	delta;
-	static int	i = 0;
+	int	i = 0;
+	static int bite = 0;
 
 	if (dir.x == 0.0f)
 		delta.x = 1e30;
@@ -84,14 +86,55 @@ t_vector_2d	dda(t_mlx_data *mlx_data, int x, int y)
 			side.y += delta.y;
 			map.y += step.y;
 		}
+		if (mlx_data->bres_val.dx <= 0 && mlx_data->bres_val.dy <= 0  && (limit.y >= 39 && limit.y <= 561) && (limit.x >= 39 && limit.x <= 761))
+		{
+			if (map.x <= limit.x && map.y >= limit.y)
+			{
+				// printf("1 dx: %d dy: %d\n", mlx_data->bres_val.dx, mlx_data->bres_val.dy);
+				// printf("1 limit.x: %d limit.y: %d\n", limit.x, limit.y);
+				// printf("1 map.x: %d map.y: %d\n\n", map.x, map.y);
+				return (limit);
+			}
+		}
+		if (mlx_data->bres_val.dx >= 0 && mlx_data->bres_val.dy <= 0  && (limit.y >= 39 && limit.y <= 561) && (limit.x >= 39 && limit.x <= 761))
+		{
+			if (map.x <= limit.x && map.y <= limit.y)
+			{
+				// printf("1 dx: %d dy: %d\n", mlx_data->bres_val.dx, mlx_data->bres_val.dy);
+				// printf("1 limit.x: %d limit.y: %d\n", limit.x, limit.y);
+				// printf("1 map.x: %d map.y: %d\n\n", map.x, map.y);
+				return (limit);
+			}
+		}
+		if (mlx_data->bres_val.dx >= 0 && mlx_data->bres_val.dy >= 0  && (limit.y >= 39 && limit.y <= 561) && (limit.x >= 39 && limit.x <= 761))
+		{
+			if (map.x >= limit.x && map.y <= limit.y)
+			{
+				// printf("1 dx: %d dy: %d\n", mlx_data->bres_val.dx, mlx_data->bres_val.dy);
+				// printf("1 limit.x: %d limit.y: %d\n", limit.x, limit.y);
+				// printf("1 map.x: %d map.y: %d\n\n", map.x, map.y);
+				return (limit);
+			}
+		}
+		if (map.x >= limit.x && map.y >= limit.y && (limit.y >= 39 && limit.x >= 39))
+		{
+			// printf("3 dx: %d dy: %d\n", mlx_data->bres_val.dx, mlx_data->bres_val.dy);
+			// printf("3 limit.x: %d limit.y: %d\n", limit.x, limit.y);
+			// printf("3 map.x: %d map.y: %d\n\n", map.x, map.y);
+			return (limit);
+		}
 		if (collided(mlx_data, map.x, map.y))
 		{
-			//printf("side.x: %f side.y: %f\n", side.x, side.y);
-			//printf("COLLISION #%d DETECTED AT X: %d Y: %d\n", i++, map.x, map.y);
+			// printf("COLLISION\n");
+			// printf("%d dx: %d dy: %d\n", bite, mlx_data->bres_val.dx, mlx_data->bres_val.dy);
+			// printf("%d map.x: %d map.y: %d\n", bite, map.x, map.y);
+			// printf("%d limit.x: %d limit.y: %d\n\n", bite, limit.x, limit.y);
+			bite++;
 			return (map);
 		}
+		i++;
 	}
-	return (origin);
+	return (map);
 }
 
 void	init_angle(t_mlx_data *mlx_data)
@@ -102,7 +145,7 @@ void	init_angle(t_mlx_data *mlx_data)
 	int	i = 0;
 	double	adder;
 
-	opposite = tan(45 / (180.0f / PI)) * 350;
+	opposite = tan(45 / (180.0f / PI)) * 800;
 	ray1 = mlx_data->bres_val.angle + PI / 2;
 	ray2 = mlx_data->bres_val.angle - PI / 2; 	
 	if (mlx_data->bres_val.dx >= 0 && mlx_data->bres_val.dy < 0)
@@ -113,15 +156,15 @@ void	init_angle(t_mlx_data *mlx_data)
 		mlx_data->bres_val.angle = atan(((double)-mlx_data->bres_val.dy / (double)mlx_data->bres_val.dx)) + 3.14f;
 	else
 		mlx_data->bres_val.angle = atan(((double)mlx_data->bres_val.dx / (double)mlx_data->bres_val.dy)) + 3.14 + 1.57f;
-	mlx_data->vector[0].x = cos(-mlx_data->bres_val.angle) * opposite + RES_X / 2;
-	mlx_data->vector[0].y = sin(-mlx_data->bres_val.angle) * opposite + RES_Y / 2;
-	while (i < 400)
+	mlx_data->vector[0].x = cos(-mlx_data->bres_val.angle) * opposite + mlx_data->player.pos[0];
+	mlx_data->vector[0].y = sin(-mlx_data->bres_val.angle) * opposite + mlx_data->player.pos[1];
+	while (i < 800)
 	{
 		if (!(i % 2))
 		{
 			mlx_data->vector[i].x = cos(-ray1) * opposite * adder + mlx_data->vector[0].x;
 			mlx_data->vector[i].y = sin(-ray1) * opposite * adder + mlx_data->vector[0].y;
-			adder += 0.004;
+			adder += 0.002;
 		}
 		else
 		{
@@ -143,7 +186,7 @@ void	init_bresenham(t_mlx_data *mlx_data, int x, int y)
 	mlx_data->bres_val.y2 = y;
 	mlx_data->bres_val.dx = x - mlx_data->bres_val.x1;
 	mlx_data->bres_val.dy = y - mlx_data->bres_val.y1;
-	mlx_data->bres_val.err = mlx_data->bres_val.dx - mlx_data->bres_val.dy;
+	mlx_data->bres_val.err = abs(mlx_data->bres_val.dx) - abs(mlx_data->bres_val.dy);
 }
 
 void	ft_bresenham(t_mlx_data *mlx_data, int x, int y, int color)

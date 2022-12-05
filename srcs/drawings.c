@@ -6,50 +6,11 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:38:57 by eavilov           #+#    #+#             */
-/*   Updated: 2022/11/24 05:24:03 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/05 09:57:08 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "functions.h"
-
-void	draw_line(t_mlx_data *mlx_data)
-{
-	int	x1;
-	int	y1;
-	int	x2;
-	int	y2;
-	int	dx;
-	int	dy;
-	int	err;
-	int	e2;
-
-	x1 = 430;
-	y1 = 320;
-	x2 = 719;
-	y2 = 395;
-	dx = x2 - x1; // 289
-	dy = y2 - y1;
-	err = dx - dy; // 214
-	e2 = 2*err; // 428
-	while (x1 <= x2)
-	{
-		if (x1 >= x2)
-			break ;
-		e2 = 2*err;
-		my_mlx_pixel_put(&mlx_data->img, x1, y1, BLUE);
-		if (e2 > -(y2 - y1))
-		{
-			err -= dy;
-			x1++;
-		}
-		else
-		{
-			err += dx;
-			y1++;
-		}
-	}
-	mlx_put_image_to_window(mlx_data->mlx, mlx_data->win, mlx_data->img.image, 0, 0);
-}
 
 void	draw_median(t_mlx_data *mlx_data)
 {
@@ -82,9 +43,9 @@ void	draw_square(t_mlx_data *mlx_data, int x, int y, int color)
 	
 	i1 = 0;
 	i2 = 0;
-	while (i2 < 60)
+	while (i2 < 40)
 	{
-		while (i1 < 60)
+		while (i1 < 40)
 		{
 			my_mlx_pixel_put(&mlx_data->img, x + i1, y + i2, color);
 			i1++;
@@ -113,12 +74,12 @@ void	draw_damier(t_mlx_data *mlx_data, int color)
 				draw_square(mlx_data, x1, y1, color);
 			else
 				draw_square(mlx_data, x1, y1, BLACK);
-			x1 += 60;
+			x1 += 40;
 			x++;
 		}
 		x = 0;
 		y++;
-		y1 += 59;
+		y1 += 39;
 	}
-	mlx_put_image_to_window(mlx_data->mlx, mlx_data->win, mlx_data->img.image, 0, 0);
+	//mlx_put_image_to_window(mlx_data->mlx, mlx_data->win, mlx_data->img.image, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 21:51:43 by eavilov           #+#    #+#             */
-/*   Updated: 2022/11/25 23:55:20 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/05 09:58:31 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_square_tab
 
 typedef struct s_player
 {
-	int		pos[2];
+	float		pos[2];
 	float	dir[2];
 	int		view_dst;
 }	t_player;
@@ -101,6 +101,7 @@ typedef struct s_mlx_data
 	void				*mlx;
 	void				*win;
 	void				*floor;
+	double				angle;
 	t_mlx_coords		coords;
 	t_mlx_res			res;
 	t_mlx_moves			moves;
@@ -108,7 +109,7 @@ typedef struct s_mlx_data
 	t_bresenham			bres_val;
 	t_square_tab		tableau;
 	t_player			player;
-	t_vector_2d			vector[400];
+	t_vector_2d			vector[800];
 }	t_mlx_data;
 
 #endif
