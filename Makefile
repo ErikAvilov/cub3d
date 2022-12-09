@@ -6,7 +6,7 @@
 #    By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 21:52:54 by eavilov           #+#    #+#              #
-#    Updated: 2022/11/24 01:48:47 by eavilov          ###   ########.fr        #
+#    Updated: 2022/12/09 08:11:34 by eavilov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,19 @@ NAME	= cub3d
 SRCS	= srcs/main.c \
 		srcs/mlx_init.c \
 		srcs/pressing.c \
-		srcs/init.c \
+		srcs/bresenham.c \
 		srcs/loop.c \
 		srcs/misc.c \
-		srcs/algo1.c \
+		srcs/rays_algo.c \
 		srcs/drawings.c \
 		srcs/mouse.c \
-		srcs/rays.c
+		srcs/rays.c \
+		srcs/dda.c \
+		srcs/dda_init.c \
+		srcs/player_collision.c \
+		srcs/player_movement.c \
+		srcs/player_rotation.c \
+		srcs/algo_stuff.c
 
 HEADER	= srcs/cub3d.h \
 		srcs/functions.h \

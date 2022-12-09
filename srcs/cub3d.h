@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 21:51:43 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/05 09:58:31 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/09 13:18:15 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,26 @@ typedef struct s_mlx_res
 	int		center_y;
 }	t_mlx_res;
 
-typedef struct s_mlx_coords
+typedef struct s_vector_2d
 {
 	int		x;
 	int		y;
-}	t_mlx_coords;
+}	t_vector_2d;
+
+typedef struct s_vector_f
+{
+	float			x;
+	float			y;
+	t_vector_2d		side_hit;
+	double			length;
+	float			perp_len;
+}	t_vector_2f;
 
 typedef struct s_mlx_moves
 {
-	int		key[10];
-	int		fingers;
+	int			key[10];
+	int			fingers;
+	t_vector_2f	newdir;
 }	t_mlx_moves;
 
 typedef struct s_data
@@ -52,9 +62,7 @@ typedef struct s_data
 typedef struct s_bresenham
 {
 	int		x1;
-	int		x2;
 	int		y1;
-	int		y2;
 	int		dx;
 	int		dy;
 	int		err;
@@ -70,31 +78,36 @@ typedef struct s_square_tab
 	float	y;
 }	t_square_tab;
 
-typedef struct s_player
-{
-	float		pos[2];
-	float	dir[2];
-	int		view_dst;
-}	t_player;
-
 typedef struct s_vector_d
 {
 	double	x;
 	double	y;
 }	t_vector_d;
 
-typedef	struct s_vector_2d
+typedef struct s_player
 {
-	int		x;
-	int		y;
-}	t_vector_2d;
+	t_vector_2f	pos;
+	float		dir[2];
+	int			view_dst;
+}	t_player;
 
-
-typedef struct s_vector_f
+typedef struct s_ray_data
 {
-	float	x;
-	float	y;
-}	t_vector_f;
+	int		opposite;
+	int		amount;
+	double	gap;
+}	t_ray_data;
+
+typedef struct s_dda
+{
+	t_vector_2f	origin;
+	t_vector_2f	map;
+	t_vector_2d	step;
+	t_vector_2f	limit;
+	t_vector_2f	dir;
+	t_vector_2f	side;
+	t_vector_2f	delta;
+}	t_dda;
 
 typedef struct s_mlx_data
 {
@@ -102,14 +115,16 @@ typedef struct s_mlx_data
 	void				*win;
 	void				*floor;
 	double				angle;
-	t_mlx_coords		coords;
+	t_dda				dda_val;
 	t_mlx_res			res;
 	t_mlx_moves			moves;
 	t_data				img;
+	t_ray_data			rays;
 	t_bresenham			bres_val;
 	t_square_tab		tableau;
 	t_player			player;
-	t_vector_2d			vector[800];
+	t_vector_2f			vector[1280];
+	t_vector_2f			ray[1280];
 }	t_mlx_data;
 
 #endif

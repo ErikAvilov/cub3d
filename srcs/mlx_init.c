@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:48:15 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/05 09:58:17 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/09 12:38:13 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	damier_tab_init(t_mlx_data *mlx_data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
-	mlx_data->tableau.height = 15;
-	mlx_data->tableau.width = 20;
+	mlx_data->tableau.height = 18;
+	mlx_data->tableau.width = 32;
 	while (y < mlx_data->tableau.height)
 	{
-		if (y == 0 || y == 14)
+		if (y == 0 || y == 17)
 		{
 			while (x < mlx_data->tableau.width)
 			{
@@ -32,7 +32,7 @@ void	damier_tab_init(t_mlx_data *mlx_data)
 			}
 			x = 0;
 			y++;
-			if (y >= 14)
+			if (y >= 17)
 				return ;
 		}
 		mlx_data->tableau.tab[y][x] = 1;
@@ -46,11 +46,25 @@ void	damier_tab_init(t_mlx_data *mlx_data)
 
 void	player_init(t_mlx_data *mlx_data)
 {
-	mlx_data->player.pos[0] = RES_X / 2;
-	mlx_data->player.pos[1] = RES_Y / 2;
+	mlx_data->player.pos.x = RES_X / 2;
+	mlx_data->player.pos.y = RES_Y / 2;
 	mlx_data->player.dir[0] = 0;
 	mlx_data->player.dir[1] = -1;
 	mlx_data->player.view_dst = 100;
+}
+
+void	screen_init(t_mlx_data *mlx_data)
+{
+	mlx_data->img.bits_per_pixel = 0;
+	mlx_data->img.line_length = 0;
+	mlx_data->img.endian = 0;
+	mlx_data->res.res[0] = RES_X;
+	mlx_data->res.res[1] = RES_Y;
+	mlx_data->res.center_x = RES_X / 2;
+	mlx_data->res.center_y = RES_Y / 2;
+	mlx_data->rays.opposite = tan(OPPOSITE) * 800;
+	mlx_data->rays.amount = 1280;
+	mlx_data->rays.gap = 1 / (mlx_data->rays.amount * 0.5);
 }
 
 void	value_init(t_mlx_data *mlx_data)
@@ -63,19 +77,15 @@ void	value_init(t_mlx_data *mlx_data)
 		mlx_data->moves.key[i] = -1;
 	damier_tab_init(mlx_data);
 	player_init(mlx_data);
-	mlx_data->img.bits_per_pixel = 0;
-	mlx_data->img.line_length = 0;
-	mlx_data->img.endian = 0;
-	mlx_data->res.res[0] = RES_X;
-	mlx_data->res.res[1] = RES_Y;
-	mlx_data->res.center_x = RES_X / 2;
-	mlx_data->res.center_y = RES_Y / 2;
-	mlx_data->coords.x = 0;
-	mlx_data->coords.y = 0;
-	// mlx_data->vector[0].x = mlx_data->player.pos[0];
-	// mlx_data->vector[0].y = mlx_data->player.pos[1] - 200;
-	mlx_data->vector[0] = dda(mlx_data, mlx_data->player.pos[0], mlx_data->player.pos[1] - 1);
-	mlx_data->angle = find_angle(mlx_data, mlx_data->vector[0].x, mlx_data->vector[0].y);
+	screen_init(mlx_data);
+	mlx_data->vector[0] = dda(mlx_data, mlx_data->player.pos.x,
+			mlx_data->player.pos.y - 100);
+	mlx_data->angle = find_angle(mlx_data, mlx_data->vector[0].x,
+			mlx_data->vector[0].y);
+	mlx_data->moves.newdir.x = cos(-mlx_data->angle) * cos(-PI2)
+		- sin(-mlx_data->angle) * sin(-PI2);
+	mlx_data->moves.newdir.y = cos(-mlx_data->angle) * sin(-PI2)
+		+ sin(-mlx_data->angle) * cos(-PI2);
 }
 
 void	window_init(t_mlx_data *mlx_data)

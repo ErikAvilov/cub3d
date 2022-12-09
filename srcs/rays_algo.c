@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo1.c                                            :+:      :+:    :+:   */
+/*   rays_algo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:31:49 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/05 09:47:20 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/08 11:01:29 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	bottom_right(t_mlx_data *mlx_data, int x, int y, int color)
 {
 	int	e2;
 
-	// printf("bot right\n");
 	e2 = 2 * mlx_data->bres_val.err;
 	while (mlx_data->bres_val.x1 <= x && mlx_data->bres_val.y1 <= y)
 	{
@@ -43,7 +42,6 @@ void	bottom_left(t_mlx_data *mlx_data, int x, int y, int color)
 {
 	int	e2;
 
-	// printf("bot left\n");
 	e2 = 2 * mlx_data->bres_val.err;
 	while (mlx_data->bres_val.x1 >= x)
 	{
@@ -70,7 +68,6 @@ void	top_left(t_mlx_data *mlx_data, int x, int y, int color)
 {
 	int	e2;
 
-	// printf("top left\n");
 	e2 = 2 * mlx_data->bres_val.err;
 	while (mlx_data->bres_val.x1 >= x && mlx_data->bres_val.y1 >= y)
 	{
@@ -97,7 +94,6 @@ void	top_right(t_mlx_data *mlx_data, int x, int y, int color)
 {
 	int	e2;
 
-	// printf("top right\n");
 	e2 = 2 * mlx_data->bres_val.err;
 	while (mlx_data->bres_val.y1 >= y && mlx_data->bres_val.x1 <= x)
 	{

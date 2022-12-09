@@ -18,3 +18,7 @@ jour 21? : je reprends avec autre chose, limiter le champ de vision
 jour 22 : finalement j'ai réussi les rotations, plus qu'à proprement inclure tous les rayons
 jour 23 : pause dimanche
 jour 24 : rayons proprement inclus avec champ de vision pour éviter d'en cast trop
+jour 25 : inclusion des déplacements
+jour 26 : grosse remise à propre du code + finition des déplacements avec bonus collision
+jour 27 : Savoir quelle côté du mur j'affiche par rapport au joueur
+jour 28 : je commence le traçage de la 3D
