@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:52:21 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/09 09:04:17 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/15 11:45:11 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		empty_key_tab(t_mlx_data *mlx_data, int keycode);
 float		ft_abs(float nbr);
 
 void		damier_tab_init(t_mlx_data *mlx_data);
-void		player_init(t_mlx_data *mlx_data);
+t_vector_2d	player_init(t_mlx_data *mlx_data);
 void		window_init(t_mlx_data *mlx_data);
 void		value_init(t_mlx_data *mlx_data);
 
@@ -82,5 +82,6 @@ void		check_action(t_mlx_data *mlx_data);
 int			blocked(t_mlx_data *mlx_data, int keycode);
 
 void		display_terrain(t_mlx_data *mlx_data);
+void		floor_ceiling(t_mlx_data *mlx_data);
 
 #endif

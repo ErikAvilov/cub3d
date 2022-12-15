@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 21:51:43 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/09 13:18:15 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/15 13:08:49 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 # include <math.h>
 # include "defines.h"
+# include "../my_libft/libft.h"
 # include "../libx/minilibx_opengl_20191021/mlx.h"
 
 typedef struct s_mlx_res
@@ -42,6 +46,14 @@ typedef struct s_vector_f
 	double			length;
 	float			perp_len;
 }	t_vector_2f;
+
+typedef	struct s_color_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_color_rgb;
+
 
 typedef struct s_mlx_moves
 {
@@ -115,6 +127,7 @@ typedef struct s_mlx_data
 	void				*win;
 	void				*floor;
 	double				angle;
+	char				**map;
 	t_dda				dda_val;
 	t_mlx_res			res;
 	t_mlx_moves			moves;

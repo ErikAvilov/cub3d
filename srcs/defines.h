@@ -6,13 +6,13 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:14:14 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/07 12:30:13 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/12 13:24:24 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
-
+ 
 /*	Keys	*/
 
 # define K_A		0
@@ -65,6 +65,9 @@
 # define PURPLE	0x009900CC
 # define YELLOW	0x00FFFF00
 # define BROWN	0x00663300
+
+# define SKY	0x00CCCCFF
+# define FLOOR	0x00333366
 
 /*	resolutions	*/
 
