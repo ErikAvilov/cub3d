@@ -111,9 +111,9 @@ int	loop(t_mlx_data *mlx_data)
 	algo_init(mlx_data);
 	check_mouse_rot(mlx_data);
 	check_action(mlx_data);
-	//send_rays(mlx_data);
-	floor_ceiling(mlx_data);
-	display_terrain(mlx_data);
+	send_rays(mlx_data);
+	//floor_ceiling(mlx_data);
+	//display_terrain(mlx_data);
 	if (mlx_data->mouse.zone == 1)
 		display_zone(mlx_data);
 	mlx_put_image_to_window(mlx_data->mlx, mlx_data->win,
