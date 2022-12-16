@@ -6,52 +6,11 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:48:15 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/15 13:40:34 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/16 13:41:37 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "functions.h"
-
-void	damier_tab_init(t_mlx_data *mlx_data)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	mlx_data->tableau.height = 18;
-	mlx_data->tableau.width = 32;
-	while (y < mlx_data->tableau.height)
-	{
-		if (y == 0 || y == 17)
-		{
-			while (x < mlx_data->tableau.width)
-			{
-				mlx_data->tableau.tab[y][x] = 1;
-				printf("%d", mlx_data->tableau.tab[y][x]);
-				x++;
-			}
-			printf("\n");
-			x = 0;
-			y++;
-			if (y >= 17)
-				return ;
-		}
-		mlx_data->tableau.tab[y][x] = 1;
-		printf("%d", mlx_data->tableau.tab[y][x]);
-		while (++x < mlx_data->tableau.width - 1)
-		{
-			mlx_data->tableau.tab[y][x] = 0;
-			printf("%d", mlx_data->tableau.tab[y][x]);
-		}
-		mlx_data->tableau.tab[y][x] = 1;
-		printf("%d", mlx_data->tableau.tab[y][x]);
-		printf("\n");
-		x = 0;
-		y++;
-	}
-	printf("\n");
-}
 
 int	is_char(char c)
 {
@@ -79,7 +38,11 @@ t_vector_2f	set_pos(t_mlx_data *mlx_data)
 		while (mlx_data->map[y][x])
 		{
 			if(is_char(mlx_data->map[y][x]))
+			{
+				pos.x += 20;
+				pos.y += 20;
 				return (pos);
+			}
 			x++;
 			pos.x += 40;
 		}
@@ -90,6 +53,7 @@ t_vector_2f	set_pos(t_mlx_data *mlx_data)
 	}
 	pos.x = RES_X / 2;
 	pos.y = RES_Y / 2;
+	printf("default pos\n");
 	return (pos);
 }
 
@@ -100,10 +64,6 @@ t_vector_2d	player_init(t_mlx_data *mlx_data)
 
 	c = 'N';
 	mlx_data->player.pos = set_pos(mlx_data);
-	//mlx_data->player.pos.x = RES_X / 2;
-	//mlx_data->player.pos.y = RES_Y / 2;
-	mlx_data->player.dir[0] = 0;
-	mlx_data->player.dir[1] = -1;
 	mlx_data->player.view_dst = 100;
 	if (c == 'N')
 	{
@@ -175,7 +135,8 @@ void	value_init(t_mlx_data *mlx_data)
 	mlx_data->moves.fingers = 10;
 	while (++i < mlx_data->moves.fingers)
 		mlx_data->moves.key[i] = -1;
-	//damier_tab_init(mlx_data);
+	mlx_data->mouse.x = -1;
+	mlx_data->mouse.zone = 0;
 	map_init(mlx_data);
 	dir = player_init(mlx_data);
 	screen_init(mlx_data);

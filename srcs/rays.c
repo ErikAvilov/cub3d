@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 01:42:58 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/07 12:56:58 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/16 13:09:02 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ double	find_angle(t_mlx_data *mlx_data, int x, int y)
 				/ (double)mlx_data->bres_val.dx);
 	else if (mlx_data->bres_val.dx < 0 && mlx_data->bres_val.dy < 0)
 		result = atan(((double)mlx_data->bres_val.dx
-				/ (double)mlx_data->bres_val.dy)) + PI * 0.5f;
+					/ (double)mlx_data->bres_val.dy)) + PI * 0.5f;
 	else if (mlx_data->bres_val.dx < 0 && mlx_data->bres_val.dy > 0)
 		result = atan(((double)-mlx_data->bres_val.dy
-				/ (double)mlx_data->bres_val.dx)) + 3.14f;
+					/ (double)mlx_data->bres_val.dx)) + 3.14f;
 	else
 		result = atan(((double)mlx_data->bres_val.dx
-				/ (double)mlx_data->bres_val.dy)) + 3.14 + 1.57f;
+					/ (double)mlx_data->bres_val.dy)) + 3.14 + 1.57f;
 	return (result);
 }

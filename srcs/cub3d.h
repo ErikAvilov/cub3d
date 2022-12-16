@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 21:51:43 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/15 13:08:49 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/16 13:35:30 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,13 @@ typedef struct s_vector_2d
 	int		y;
 }	t_vector_2d;
 
-typedef struct s_vector_f
+typedef struct s_mouse_vars
+{
+	int		x;
+	int		zone;
+}	t_mouse_vars;
+
+typedef struct s_vector_2f
 {
 	float			x;
 	float			y;
@@ -47,13 +53,12 @@ typedef struct s_vector_f
 	float			perp_len;
 }	t_vector_2f;
 
-typedef	struct s_color_rgb
+typedef struct s_color_rgb
 {
 	int	r;
 	int	g;
 	int	b;
 }	t_color_rgb;
-
 
 typedef struct s_mlx_moves
 {
@@ -99,7 +104,6 @@ typedef struct s_vector_d
 typedef struct s_player
 {
 	t_vector_2f	pos;
-	float		dir[2];
 	int			view_dst;
 }	t_player;
 
@@ -128,6 +132,7 @@ typedef struct s_mlx_data
 	void				*floor;
 	double				angle;
 	char				**map;
+	t_mouse_vars		mouse;
 	t_dda				dda_val;
 	t_mlx_res			res;
 	t_mlx_moves			moves;

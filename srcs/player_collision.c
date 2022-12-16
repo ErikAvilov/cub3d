@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:49:04 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/15 14:05:18 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/16 12:42:55 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	check_up(t_mlx_data *mlx_data)
 	int	y;
 	int	x1;
 	int	y1;
-	static int i = 0;
 
 	x = mlx_data->player.pos.x;
 	y = mlx_data->player.pos.y;
 	x1 = mlx_data->player.pos.x + cos(-mlx_data->angle) * 5;
 	y1 = mlx_data->player.pos.y + sin(-mlx_data->angle) * 5;
-	if (mlx_data->map[y1 / 40][x / 40] == '1' || mlx_data->map[y / 40][x1 / 40] == '1')
+	if (mlx_data->map[y1 / 40][x / 40] == '1'
+			|| mlx_data->map[y / 40][x1 / 40] == '1')
 	{
 		if (mlx_data->map[y / 40][x1 / 40] == '0')
 			mlx_data->player.pos.x += cos(-mlx_data->angle) * 5;
@@ -46,7 +46,8 @@ int	check_down(t_mlx_data *mlx_data)
 	y = mlx_data->player.pos.y;
 	x1 = mlx_data->player.pos.x - cos(-mlx_data->angle) * 5;
 	y1 = mlx_data->player.pos.y - sin(-mlx_data->angle) * 5;
-	if (mlx_data->map[y1 / 40][x / 40] == '1' || mlx_data->map[y / 40][x1 / 40] == '1')
+	if (mlx_data->map[y1 / 40][x / 40] == '1'
+			|| mlx_data->map[y / 40][x1 / 40] == '1')
 	{
 		if (mlx_data->map[y / 40][x1 / 40] == '0')
 		{
@@ -72,7 +73,8 @@ int	check_left(t_mlx_data *mlx_data)
 	y = mlx_data->player.pos.y;
 	x1 = mlx_data->player.pos.x + mlx_data->moves.newdir.x * 5;
 	y1 = mlx_data->player.pos.y + mlx_data->moves.newdir.y * 5;
-	if (mlx_data->map[y1 / 40][x / 40] == '1' || mlx_data->map[y / 40][x1 / 40] == '1')
+	if (mlx_data->map[y1 / 40][x / 40] == '1'
+			|| mlx_data->map[y / 40][x1 / 40] == '1')
 	{
 		if (mlx_data->map[y / 40][x1 / 40] == '0')
 		{
@@ -98,7 +100,8 @@ int	check_right(t_mlx_data *mlx_data)
 	y = mlx_data->player.pos.y;
 	x1 = mlx_data->player.pos.x - mlx_data->moves.newdir.x * 5;
 	y1 = mlx_data->player.pos.y - mlx_data->moves.newdir.y * 5;
-	if (mlx_data->map[y1 / 40][x / 40] == '1' || mlx_data->map[y / 40][x1 / 40] == '1')
+	if (mlx_data->map[y1 / 40][x / 40] == '1'
+			|| mlx_data->map[y / 40][x1 / 40] == '1')
 	{
 		if (mlx_data->map[y / 40][x1 / 40] == '0')
 		{

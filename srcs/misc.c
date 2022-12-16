@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:38:16 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/07 12:59:00 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/16 12:40:55 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ void	fill_key_tab(t_mlx_data *mlx_data, int keycode)
 	int	i;
 
 	i = -1;
-	mlx_data->img.image = mlx_new_image(mlx_data->mlx, RES_X, RES_Y);
-	mlx_data->img.addr = mlx_get_data_addr(mlx_data->img.image,
-			&mlx_data->img.bits_per_pixel, &mlx_data->img.line_length,
-			&mlx_data->img.endian);
 	while (++i < mlx_data->moves.fingers)
 	{
 		if (mlx_data->moves.key[i] == -1)

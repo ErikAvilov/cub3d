@@ -6,7 +6,7 @@
 #    By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 21:52:54 by eavilov           #+#    #+#              #
-#    Updated: 2022/12/09 08:11:34 by eavilov          ###   ########.fr        #
+#    Updated: 2022/12/16 12:29:45 by eavilov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ SRCS	= srcs/main.c \
 		srcs/player_collision.c \
 		srcs/player_movement.c \
 		srcs/player_rotation.c \
-		srcs/algo_stuff.c
+		srcs/algo_stuff.c \
+		srcs/bs_formulas.c
 
 HEADER	= srcs/cub3d.h \
 		srcs/functions.h \
