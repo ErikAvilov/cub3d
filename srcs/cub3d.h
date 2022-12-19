@@ -60,13 +60,13 @@ typedef struct s_color_rgb
 	int	b;
 }	t_color_rgb;
 
-typedef struct s_textures
+typedef struct s_texture
 {
 	char*	path_no;
 	char*	path_so;
 	char*	path_we;
 	char*	path_ea;
-}	t_textures;
+}	t_texture;
 
 typedef struct s_mlx_moves
 {
@@ -152,6 +152,7 @@ typedef struct s_mlx_data
 	double				angle;
 	char				**map;
 	t_textures			textures;
+	t_texture			texture;
 	t_mouse_vars		mouse;
 	t_dda				dda_val;
 	t_mlx_res			res;
