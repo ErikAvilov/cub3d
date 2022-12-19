@@ -60,6 +60,14 @@ typedef struct s_color_rgb
 	int	b;
 }	t_color_rgb;
 
+typedef struct s_texture
+{
+	char*	path_no;
+	char*	path_so;
+	char*	path_we;
+	char*	path_ea;
+}	t_texture;
+
 typedef struct s_mlx_moves
 {
 	int			key[10];
