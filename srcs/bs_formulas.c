@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:28:35 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/16 12:44:13 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/19 14:31:03 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,7 @@ t_vector_2f	lerp(t_vector_2f start, t_vector_2f end, float i)
 	return (vect);
 }
 
-unsigned long	hexa_to_color_sky(t_mlx_data *mlx_data)
+unsigned long	val_to_rgb(t_mlx_data *mlx_data, int r, int g, int b)
 {
-	t_color_rgb	rgb;
-
-	rgb.r = 47;
-	rgb.g = 118;
-	rgb.b = 240;
-	return (((rgb.r & 0xff) << 16) + ((rgb.g & 0xff) << 8) + (rgb.b & 0xff));
-}
-
-unsigned long	hexa_to_color_floor(t_mlx_data *mlx_data)
-{
-	t_color_rgb	rgb;
-
-	rgb.r = 50;
-	rgb.g = 29;
-	rgb.b = 45;
-	return (((rgb.r & 0xff) << 16) + ((rgb.g & 0xff) << 8) + (rgb.b & 0xff));
+	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
 }

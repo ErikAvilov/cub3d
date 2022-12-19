@@ -6,7 +6,7 @@
 #    By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 21:52:54 by eavilov           #+#    #+#              #
-#    Updated: 2022/12/16 12:29:45 by eavilov          ###   ########.fr        #
+#    Updated: 2022/12/17 16:19:17 by eavilov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ UNDERLINE=\033[4m
 
 NAME	= cub3d
 
-SRCS	= srcs/main.c \
+MAIN	= srcs/main.c
+
+SRCS	= $(MAIN) \
 		srcs/mlx_init.c \
 		srcs/pressing.c \
 		srcs/bresenham.c \
@@ -64,8 +66,8 @@ LIBFT	= my_libft/libft.a
 OBJS	= $(patsubst srcs/%.c, objs/%.o, $(SRCS))
 MLX		= -I libx/minilibx_opengl_20191021/ -framework OpenGL -framework AppKit
 LIBMLX 	= libx/minilibx_opengl_20191021/libmlx.a
-CFLAGS	= 
-CC		= gcc -ggdb3
+CFLAGS	= -Ofast -march=native
+CC		= gcc
 RM		= rm -rf
 
 all:	${NAME} ${LIBFT}

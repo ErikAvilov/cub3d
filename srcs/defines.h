@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:14:14 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/16 12:48:09 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/17 14:31:13 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@
 # define PI		3.14
 # define PI2	1.57
 # define OPPOSITE	0.523 // FOV / (180.0f / PI)
+# define HEADSIZE 20
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:52:21 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/16 13:31:53 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/19 14:31:08 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int				check_up(t_mlx_data *mlx_data);
 int				check_down(t_mlx_data *mlx_data);
 int				check_left(t_mlx_data *mlx_data);
 int				check_right(t_mlx_data *mlx_data);
+void			check_mouse_rot(t_mlx_data *mlx_data);
 int				blocked(t_mlx_data *mlx_data, int keycode);
 
 void			move_front(t_mlx_data *mlx_data, float speed);
@@ -85,7 +86,8 @@ void			manage_wall(t_mlx_data *mlx_data, t_vector_2d tl,
 					t_vector_2d br, int i);
 void			display_terrain(t_mlx_data *mlx_data);
 void			floor_ceiling(t_mlx_data *mlx_data);
-unsigned long	hexa_to_color_sky(t_mlx_data *mlx_data);
-unsigned long	hexa_to_color_floor(t_mlx_data *mlx_data);
+unsigned long	val_to_rgb(t_mlx_data *mlx_data, int r, int g, int b);
+
+int				texture_pixel_color(t_textures *text, int x, int y);
 
 #endif

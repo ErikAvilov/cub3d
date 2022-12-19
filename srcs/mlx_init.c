@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:48:15 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/16 13:41:37 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/19 13:54:55 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_vector_2d	player_init(t_mlx_data *mlx_data)
 	t_vector_2d	dir;
 	char		c;
 
-	c = 'N';
+	c = 'W';
 	mlx_data->player.pos = set_pos(mlx_data);
 	mlx_data->player.view_dst = 100;
 	if (c == 'N')
@@ -106,7 +106,7 @@ void	map_init(t_mlx_data *mlx_data)
 {
 	int		file;
 	int		rd;
-	char	map[1000000];
+	char	map[100000];
 	int		i1;
 	int		i2;
 
@@ -114,16 +114,6 @@ void	map_init(t_mlx_data *mlx_data)
 	rd = read(file, map, 100000);
 	map[rd] = '\0';
 	mlx_data->map = ft_split(map, '\n');
-	// while (mlx_data->map[i2])
-	// {
-	// 	while (cpy[i2][i1])
-	// 	{
-	// 		mlx_data->tableau.tab[i2][i1] = ft_atoi(&cpy[i2][i1]);
-	// 		i1++;
-	// 	}
-	// 	i1 = 0;
-	// 	i2++;
-	// }
 }
 
 void	value_init(t_mlx_data *mlx_data)
@@ -155,11 +145,20 @@ void	window_init(t_mlx_data *mlx_data)
 	int	dimension[2];
 
 	value_init(&*mlx_data);
-	dimension[0] = 64;
-	dimension[1] = 64;
+	dimension[0] = 0;
+	dimension[1] = 0;
 	mlx_data->mlx = mlx_init();
-	mlx_data->floor = mlx_xpm_file_to_image(mlx_data->mlx,
-			"assets/dot.xpm", &dimension[0], &dimension[1]);
+	mlx_data->textures.image = mlx_xpm_file_to_image(mlx_data->mlx,
+	 		"assets/diamond.xpm", &mlx_data->textures.width, &mlx_data->textures.height);
+	if (!mlx_data->textures.image)
+		exit (printf("image not found\n"));
+	mlx_data->textures.text_adr = mlx_get_data_addr(mlx_data->textures.image,
+			&mlx_data->textures.bits_per_pixel, &mlx_data->textures.line_length,
+				&mlx_data->textures.endian);
+	if (!mlx_data->textures.text_adr)
+		exit(printf("addr not found\n"));
+	// mlx_data->floor = mlx_xpm_file_to_image(mlx_data->mlx,
+	// 		"assets/dot.xpm", &dimension[0], &dimension[1]);
 	mlx_data->win = mlx_new_window(mlx_data->mlx, mlx_data->res.res[0],
 			mlx_data->res.res[1], "cub");
 	mlx_do_key_autorepeatoff(mlx_data->mlx);
