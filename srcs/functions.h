@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:52:21 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/19 14:31:08 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/19 16:49:25 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int				mouse_move(int x, int y, t_mlx_data *mlx_data);
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void			fill_key_tab(t_mlx_data *mlx_data, int keycode);
 void			empty_key_tab(t_mlx_data *mlx_data, int keycode);
+float			get_angle(t_mlx_data *mlx_data, t_vector_2f player, t_vector_2f dest);
 float			ft_abs(float nbr);
 
 t_vector_2d		player_init(t_mlx_data *mlx_data);
@@ -83,7 +84,7 @@ void			check_action(t_mlx_data *mlx_data);
 int				blocked(t_mlx_data *mlx_data, int keycode);
 
 void			manage_wall(t_mlx_data *mlx_data, t_vector_2d tl,
-					t_vector_2d br, int i);
+					t_vector_2d br, int i, float slice);
 void			display_terrain(t_mlx_data *mlx_data);
 void			floor_ceiling(t_mlx_data *mlx_data);
 unsigned long	val_to_rgb(t_mlx_data *mlx_data, int r, int g, int b);

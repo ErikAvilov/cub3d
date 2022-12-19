@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:48:15 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/19 13:54:55 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/19 18:10:22 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,13 +148,13 @@ void	window_init(t_mlx_data *mlx_data)
 	dimension[0] = 0;
 	dimension[1] = 0;
 	mlx_data->mlx = mlx_init();
-	mlx_data->textures.image = mlx_xpm_file_to_image(mlx_data->mlx,
-	 		"assets/diamond.xpm", &mlx_data->textures.width, &mlx_data->textures.height);
+	mlx_data->textures[0].image = mlx_xpm_file_to_image(mlx_data->mlx,
+	 		"assets/diamond.xpm", &mlx_data->textures[0].width, &mlx_data->textures[0].height);
 	if (!mlx_data->textures.image)
 		exit (printf("image not found\n"));
 	mlx_data->textures.text_adr = mlx_get_data_addr(mlx_data->textures.image,
-			&mlx_data->textures.bits_per_pixel, &mlx_data->textures.line_length,
-				&mlx_data->textures.endian);
+			&mlx_data->textures[0].bits_per_pixel, &mlx_data->textures[0].line_length,
+				&mlx_data->textures[0].endian);
 	if (!mlx_data->textures.text_adr)
 		exit(printf("addr not found\n"));
 	// mlx_data->floor = mlx_xpm_file_to_image(mlx_data->mlx,

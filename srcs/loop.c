@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:22:09 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/19 14:33:27 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/19 18:01:24 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,46 @@ void	send_rays(t_mlx_data *mlx_data)
 	}
 }
 
-void	draw_wall(t_mlx_data *mlx_data, t_vector_2d tl, t_vector_2d br, int color)
+int		get_tex(t_mlx_data *mlx_data, t_vector_2f *ray, t_textures *text)
+{
+	double perp_angle = PI2 - ray->angle + get_angle(mlx_data, mlx_data->player.pos, mlx_data->moves.newdir);
+	double	hit_len = ray->perp_len * 0.5f * 2400 / sin(ray->angle);
+	t_vector_2f	wall = vision_limit(mlx_data->player.pos, ray->angle, ray->length);
+	float	cell_pos;
+	if (ray->hit == 1 || ray->hit == 3)
+		cell_pos = wall.y - (int)(wall.y / 40) * 40;
+	else
+		cell_pos = wall.x - (int)(wall.x / 40) * 40;
+
+	if (ray->hit == 3 || ray->hit == 2)
+		cell_pos = cell_pos / 40;
+	else
+		cell_pos = 1.0f - cell_pos / 40;
+	int tex_x = cell_pos * text->width;
+	return (tex_x);
+}
+
+int	texture_pixel_color(t_textures *text, int x, int y)
+{
+	return (*(int *)(text->text_adr + (y * text->line_length) + (x * text->bits_per_pixel / 8)));
+}
+
+void	draw_wall(t_mlx_data *mlx_data, t_vector_2d tl, t_vector_2d br, int color, int side, int index, float slice)
 {
 	int	y;
 	int	stripe;
 
 	y = tl.y;
-	double tex_y = 0;
-	int tex_x = 0;
+	double	tx_y = 0;
+	int tex = get_tex(mlx_data, &mlx_data->vector[index], &mlx_data->textures);
+	double step = mlx_data->textures.height / slice;
 	while (y < br.y)
 	{
+		if (y < 0)
+		{
+			tx_y += -y * step;
+			y = 0;
+		}
 		if (y >= RES_Y)
 			break ;
 		if (y >= 0 && y < RES_Y)
@@ -52,39 +82,38 @@ void	draw_wall(t_mlx_data *mlx_data, t_vector_2d tl, t_vector_2d br, int color)
 			stripe = tl.x;
 			while (stripe < br.x)
 			{
-				my_mlx_pixel_put(&mlx_data->img, stripe, y, color);
+				int col = texture_pixel_color(&mlx_data->textures, tex, tx_y);
+				my_mlx_pixel_put(&mlx_data->img, stripe, y, col);
 				stripe++;
 			}
 		}
+		tx_y += step;
 		y++;
 	}
 }
 
-int	texture_pixel_color(t_textures *text, int x, int y)
+void	manage_wall(t_mlx_data *mlx_data, t_vector_2d tl, t_vector_2d br, int i, float slice)
 {
-	int	color;
-
-	if (text == NULL)
-		exit(printf("ERROR\n"));
-	color = (*(int *)text->text_adr + (y * text->line_length) + (x * text->bits_per_pixel / 8));
-	return (color);
-}
-
-void	manage_wall(t_mlx_data *mlx_data, t_vector_2d tl, t_vector_2d br, int i)
-{
-	static int o = 0;
-	int color = texture_pixel_color(&mlx_data->textures, 10, 10);
-	if (o == 0)
-		printf("color: %x\n", color);
-	o++;
 	if (mlx_data->vector[i].side_hit.x == 0 && mlx_data->vector[i].side_hit.y == -1)
-			draw_wall(mlx_data, tl, br, color);
+	{
+		mlx_data->vector[i].hit = 2;
+		draw_wall(mlx_data, tl, br, RED, SOUTH, i, slice);
+	}
 	else if (mlx_data->vector[i].side_hit.x == 1 && mlx_data->vector[i].side_hit.y == 0)
-			draw_wall(mlx_data, tl, br, YELLOW);
+	{
+		mlx_data->vector[i].hit = 3;
+		draw_wall(mlx_data, tl, br, YELLOW, WEST, i, slice);
+	}
 	else if (mlx_data->vector[i].side_hit.x == -1 && mlx_data->vector[i].side_hit.y == 0)
-			draw_wall(mlx_data, tl, br, GREEN);
+	{
+		mlx_data->vector[i].hit = 1;
+		draw_wall(mlx_data, tl, br, GREEN, EAST, i, slice);
+	}
 	else if (mlx_data->vector[i].side_hit.x == 0 && mlx_data->vector[i].side_hit.y == 1)
-			draw_wall(mlx_data, tl, br, BLUE);
+	{
+		mlx_data->vector[i].hit = 0;
+		draw_wall(mlx_data, tl, br, BLUE, NORTH, i, slice);
+	}
 }
 
 void	display_terrain(t_mlx_data *mlx_data)
@@ -100,15 +129,13 @@ void	display_terrain(t_mlx_data *mlx_data)
 	while (++i < mlx_data->rays.amount)
 	{
 		slice_height = 1.0f / mlx_data->vector[i].perp_len;
-		if (slice_height > 0.39)
-			slice_height = 1.0f / mlx_data->vector[i].length;
 		slice_height = slice_height * RES_Y;
 		slice_height = slice_height * 40;
 		tl.x = i * slice_width;
 		tl.y = (RES_Y / 2) - (slice_height / 2); 
 		br.x = i * slice_width + slice_width;
 		br.y = (RES_Y / 2) + (slice_height / 2);
-		manage_wall(mlx_data, tl, br, i);
+		manage_wall(mlx_data, tl, br, i, slice_height);
 	}
 }
 
@@ -172,6 +199,6 @@ int	loop(t_mlx_data *mlx_data)
 	if (mlx_data->mouse.zone == 1)
 		display_zone(mlx_data);
 	mlx_put_image_to_window(mlx_data->mlx, mlx_data->win,
-		mlx_data->img.image, 20, 20);
+		mlx_data->img.image, 0, 0);
 	return (0);
 }

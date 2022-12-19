@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 21:51:43 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/19 13:17:25 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/19 18:09:36 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_vector_2f
 	t_vector_2d		side_hit;
 	double			length;
 	float			perp_len;
+	float			angle;
+	int				hit;
 }	t_vector_2f;
 
 typedef struct s_color_rgb
@@ -151,7 +153,7 @@ typedef struct s_mlx_data
 	void				*floor;
 	double				angle;
 	char				**map;
-	t_textures			textures;
+	t_textures			textures[4];
 	t_mouse_vars		mouse;
 	t_dda				dda_val;
 	t_mlx_res			res;

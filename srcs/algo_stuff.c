@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 08:11:20 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/16 12:31:16 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/19 18:09:17 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	vectors_init(t_mlx_data *mlx_data, t_vector_2f *gap)
 		mlx_data->vector[i] = lerp(gap[0], gap[1], inc * i);
 		mlx_data->vector[i] = dda(mlx_data, mlx_data->vector[i].x,
 	 			mlx_data->vector[i].y);
+		mlx_data->vector[i].angle = get_angle(mlx_data, mlx_data->player.pos,
+				mlx_data->vector[i]);
 		dx = mlx_data->vector[i].x - mlx_data->player.pos.x;
 	 	dy = mlx_data->vector[i].y - mlx_data->player.pos.y;
  		mlx_data->vector[i].length = sqrt(dx * dx + dy * dy);

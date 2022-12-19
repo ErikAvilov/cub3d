@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:38:57 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/19 14:31:01 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/19 14:38:11 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	floor_ceiling(t_mlx_data *mlx_data)
 	unsigned long	sky;
 	unsigned long	floor;
 
-	sky = val_to_rgb(mlx_data, 241, 25, 14);
+	sky = val_to_rgb(mlx_data, 168, 107, 14);
 	floor = val_to_rgb(mlx_data, 50, 29, 45);
 	x = -1;
 	y = 0;
