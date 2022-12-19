@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 21:51:43 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/19 18:09:36 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/19 18:24:49 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,19 @@ typedef struct s_color_rgb
 	int	b;
 }	t_color_rgb;
 
-typedef struct s_texture
+typedef struct s_texture_parsing
 {
-	char*	path_no;
-	char*	path_so;
-	char*	path_we;
-	char*	path_ea;
-}	t_texture;
+	char			*path_no;
+	char			*path_so;
+	char			*path_we;
+	char			*path_ea;
+}	t_texture_parsing;
+
+typedef struct s_sol_plaf
+{
+	unsigned long	floor;
+	unsigned long	ceilling;
+}	t_sol_plaf;
 
 typedef struct s_mlx_moves
 {
@@ -153,6 +159,9 @@ typedef struct s_mlx_data
 	void				*floor;
 	double				angle;
 	char				**map;
+	char				direction;
+	char				**paths;
+	t_sol_plaf			sol_plaf;
 	t_textures			textures[4];
 	t_mouse_vars		mouse;
 	t_dda				dda_val;
