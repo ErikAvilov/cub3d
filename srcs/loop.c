@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:22:09 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/20 08:48:10 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/21 14:04:33 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,65 +54,60 @@ int		get_tex(t_mlx_data *mlx_data, t_vector_2f *ray, t_textures *text)
 	return (tex_x);
 }
 
-int	texture_pixel_color(t_textures *text, int x, int y)
-{
-	return (*(int *)(text->text_adr + (y * text->line_length) + (x * text->bits_per_pixel / 8)));
-}
-
-void	draw_wall(t_mlx_data *mlx_data, t_vector_2d tl, t_vector_2d br, int color, int side, int index, float slice)
+void	draw_wall(t_mlx_data *mlx_data, int side, t_vector_2f *vector, float slice)
 {
 	int	y;
 	int	stripe;
+	double	tx_y;
 
-	y = tl.y;
-	double	tx_y = 0;
-	int tex = get_tex(mlx_data, &mlx_data->vector[index], &mlx_data->textures[0]);
-	double step = mlx_data->textures[0].height / slice;
-	while (y < br.y)
+	y = mlx_data->display.tl.y;
+	mlx_data->display.tex = get_tex(mlx_data, vector, &mlx_data->textures[side]);
+	mlx_data->display.step = mlx_data->textures[side].height / slice;
+	while (y < mlx_data->display.br.y)
 	{
 		if (y < 0)
 		{
-			tx_y += -y * step;
+			tx_y += -y * mlx_data->display.step;
 			y = 0;
 		}
 		if (y >= RES_Y)
 			break ;
 		if (y >= 0 && y < RES_Y)
 		{
-			stripe = tl.x;
-			while (stripe < br.x)
+			stripe = mlx_data->display.tl.x;
+			while (stripe < mlx_data->display.br.x)
 			{
-				int col = texture_pixel_color(&mlx_data->textures[0], tex, tx_y);
+				int col = texture_pixel_color(&mlx_data->textures[side], mlx_data->display.tex, tx_y);
 				my_mlx_pixel_put(&mlx_data->img, stripe, y, col);
 				stripe++;
 			}
 		}
-		tx_y += step;
+		tx_y += mlx_data->display.step;
 		y++;
 	}
 }
 
-void	manage_wall(t_mlx_data *mlx_data, t_vector_2d tl, t_vector_2d br, int i, float slice)
+void	manage_wall(t_mlx_data *mlx_data, t_vector_2f *vector, float slice)
 {
-	if (mlx_data->vector[i].side_hit.x == 0 && mlx_data->vector[i].side_hit.y == -1)
+	if (vector->side_hit.x == 0 && vector->side_hit.y == -1)
 	{
-		mlx_data->vector[i].hit = 2;
-		draw_wall(mlx_data, tl, br, RED, SOUTH, i, slice);
+		vector->hit = 2;
+		draw_wall(mlx_data, 1, vector, slice);
 	}
-	else if (mlx_data->vector[i].side_hit.x == 1 && mlx_data->vector[i].side_hit.y == 0)
+	else if (vector->side_hit.x == 1 && vector->side_hit.y == 0)
 	{
-		mlx_data->vector[i].hit = 3;
-		draw_wall(mlx_data, tl, br, YELLOW, WEST, i, slice);
+		vector->hit = 3;
+		draw_wall(mlx_data, 3, vector, slice);
 	}
-	else if (mlx_data->vector[i].side_hit.x == -1 && mlx_data->vector[i].side_hit.y == 0)
+	else if (vector->side_hit.x == -1 && vector->side_hit.y == 0)
 	{
-		mlx_data->vector[i].hit = 1;
-		draw_wall(mlx_data, tl, br, GREEN, EAST, i, slice);
+		vector->hit = 1;
+		draw_wall(mlx_data, 2, vector, slice);
 	}
-	else if (mlx_data->vector[i].side_hit.x == 0 && mlx_data->vector[i].side_hit.y == 1)
+	else if (vector->side_hit.x == 0 && vector->side_hit.y == 1)
 	{
-		mlx_data->vector[i].hit = 0;
-		draw_wall(mlx_data, tl, br, BLUE, NORTH, i, slice);
+		vector->hit = 0;
+		draw_wall(mlx_data, 0, vector, slice);
 	}
 }
 
@@ -121,8 +116,6 @@ void	display_terrain(t_mlx_data *mlx_data)
 	float		slice_height;
 	int			slice_width;
 	int			i;
-	t_vector_2d	tl;
-	t_vector_2d	br;
 
 	i = -1;
 	slice_width = RES_X / mlx_data->rays.amount;
@@ -131,11 +124,11 @@ void	display_terrain(t_mlx_data *mlx_data)
 		slice_height = 1.0f / mlx_data->vector[i].perp_len;
 		slice_height = slice_height * RES_Y;
 		slice_height = slice_height * 40;
-		tl.x = i * slice_width;
-		tl.y = (RES_Y / 2) - (slice_height / 2); 
-		br.x = i * slice_width + slice_width;
-		br.y = (RES_Y / 2) + (slice_height / 2);
-		manage_wall(mlx_data, tl, br, i, slice_height);
+		mlx_data->display.tl.x = i * slice_width;
+		mlx_data->display.tl.y = (RES_Y / 2) - (slice_height / 2); 
+		mlx_data->display.br.x = i * slice_width + slice_width;
+		mlx_data->display.br.y = (RES_Y / 2) + (slice_height / 2);
+		manage_wall(mlx_data, &mlx_data->vector[i], slice_height);
 	}
 }
 

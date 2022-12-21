@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 21:51:43 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/20 08:46:12 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/21 14:04:14 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_mlx_moves
 
 typedef struct s_textures
 {
+	int		side;
 	void	*image;
 	char	*text_adr;
 	int		bits_per_pixel;
@@ -152,6 +153,14 @@ typedef struct s_dda
 	t_vector_2f	delta;
 }	t_dda;
 
+typedef struct s_display_data
+{
+	t_vector_2d	tl;
+	t_vector_2d	br;
+	int			tex;
+	double		step;
+}	t_display_data;
+
 typedef struct s_mlx_data
 {
 	void				*mlx;
@@ -161,6 +170,7 @@ typedef struct s_mlx_data
 	char				**map;
 	char				direction;
 	char				*paths[4];
+	t_display_data		display;
 	t_sol_plaf			sol_plaf;
 	t_textures			textures[4];
 	t_mouse_vars		mouse;

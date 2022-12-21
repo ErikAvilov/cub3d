@@ -6,7 +6,7 @@
 #    By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 21:52:54 by eavilov           #+#    #+#              #
-#    Updated: 2022/12/17 16:19:17 by eavilov          ###   ########.fr        #
+#    Updated: 2022/12/21 14:35:58 by eavilov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,16 @@ SRCS	= $(MAIN) \
 		srcs/player_movement.c \
 		srcs/player_rotation.c \
 		srcs/algo_stuff.c \
-		srcs/bs_formulas.c
+		srcs/bs_formulas.c \
+		srcs/parsing.c \
+		srcs/parsing_check.c \
+		srcs/parsing_color.c \
+		srcs/parsing_map.c \
+		srcs/parsing_texture_ea_we.c \
+		srcs/parsing_texture_no_so.c \
+		srcs/free_map.c \
+		srcs/free_texture.c \
+		srcs/strcomplete.c
 
 HEADER	= srcs/cub3d.h \
 		srcs/functions.h \

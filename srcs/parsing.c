@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdaumas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 07:20:47 by fdaumas           #+#    #+#             */
-/*   Updated: 2022/12/21 07:23:59 by fdaumas          ###   ########lyon.fr   */
+/*   Updated: 2022/12/21 14:32:00 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,24 @@ int	parsing_file(char *file, t_mlx_data *data)
 	return (0);
 }
 
-int	main(void)
-{
-	t_mlx_data	data;
+// int	main(void)
+// {
+// 	t_mlx_data	data;
 
-	if (parsing_file("./map.cub", &data))
-		return (1);
-	write(1, data.paths[0], ft_strlen(data.paths[0]));
-	ft_putchar(10);
-	write(1, data.paths[1], ft_strlen(data.paths[1]));
-	ft_putchar(10);
-	write(1, data.paths[2], ft_strlen(data.paths[2]));
-	ft_putchar(10);
-	write(1, data.paths[3], ft_strlen(data.paths[3]));
-	ft_putchar(10);
-	printf("ceilling val = %zu\n", data.sol_plaf.ceilling);
-	printf("floor val = %zu\n", data.sol_plaf.floor);
-	for(int i = 0;data.map[i];i++)
-		printf("map = %s\n", data.map[i]);
-	free_data_map(&data, NULL);
-	return (0);
-}
+// 	if (parsing_file("./map.cub", &data))
+// 		return (1);
+// 	write(1, data.paths[0], ft_strlen(data.paths[0]));
+// 	ft_putchar(10);
+// 	write(1, data.paths[1], ft_strlen(data.paths[1]));
+// 	ft_putchar(10);
+// 	write(1, data.paths[2], ft_strlen(data.paths[2]));
+// 	ft_putchar(10);
+// 	write(1, data.paths[3], ft_strlen(data.paths[3]));
+// 	ft_putchar(10);
+// 	printf("ceilling val = %zu\n", data.sol_plaf.ceilling);
+// 	printf("floor val = %zu\n", data.sol_plaf.floor);
+// 	for(int i = 0;data.map[i];i++)
+// 		printf("map = %s\n", data.map[i]);
+// 	free_data_map(&data, NULL);
+// 	return (0);
+// }

@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:48:15 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/21 13:36:33 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/21 14:36:53 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,9 @@ void	value_init(t_mlx_data *mlx_data)
 		mlx_data->moves.key[i] = -1;
 	mlx_data->mouse.x = -1;
 	mlx_data->mouse.zone = 0;
-	map_init(mlx_data);
+	if (parsing_file("./maps/maptest.cub", mlx_data))
+		exit(1);
+	//map_init(mlx_data);
 	dir = player_init(mlx_data);
 	screen_init(mlx_data);
 	mlx_data->vector[0] = dda(mlx_data, mlx_data->player.pos.x + dir.x,
@@ -145,10 +147,6 @@ void	textures_init(t_mlx_data *mlx_data)
 	int	i;
 
 	i = 0;
-	mlx_data->paths[0] = "assets/north.xpm";
-	mlx_data->paths[1] = "assets/south.xpm";
-	mlx_data->paths[2] = "assets/east.xpm";
-	mlx_data->paths[3] = "assets/west.xpm";
 	while (i < 4)
 	{
 		mlx_data->textures[i].image = mlx_xpm_file_to_image(mlx_data->mlx,
@@ -160,6 +158,7 @@ void	textures_init(t_mlx_data *mlx_data)
 					&mlx_data->textures[i].endian);
 		if (!mlx_data->textures[i].text_adr)
 			exit(printf("addr not found\n"));
+		mlx_data->textures[i].side = i;
 		i++;
 	}
 }
