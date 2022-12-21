@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdaumas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 07:21:43 by fdaumas           #+#    #+#             */
-/*   Updated: 2022/12/21 07:23:59 by fdaumas          ###   ########lyon.fr   */
+/*   Updated: 2022/12/21 15:08:53 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**map(char	*content, t_mlx_data *data)
 
 	player = 0;
 	idx = ft_strlen(content) - 1;
-	while (is_char_map(content[idx]) > 0)
+	while (is_char_map(content[idx]) > 0 && (is_char_map(content[idx]) == 3 && is_char_map(content[idx - 1] !=  3)))
 	{
 		if (is_char_map(content[idx]) == 2)
 		{

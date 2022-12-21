@@ -6,7 +6,7 @@
 #    By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 21:52:54 by eavilov           #+#    #+#              #
-#    Updated: 2022/12/21 14:35:58 by eavilov          ###   ########.fr        #
+#    Updated: 2022/12/21 15:05:38 by eavilov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ LIBFT	= my_libft/libft.a
 OBJS	= $(patsubst srcs/%.c, objs/%.o, $(SRCS))
 MLX		= -I libx/minilibx_opengl_20191021/ -framework OpenGL -framework AppKit
 LIBMLX 	= libx/minilibx_opengl_20191021/libmlx.a
-CFLAGS	= -Ofast -march=native
+CFLAGS	=
 CC		= gcc
 RM		= rm -rf
 

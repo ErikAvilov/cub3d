@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_texture_ea_we.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdaumas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 07:22:02 by fdaumas           #+#    #+#             */
-/*   Updated: 2022/12/21 07:23:59 by fdaumas          ###   ########lyon.fr   */
+/*   Updated: 2022/12/21 14:45:06 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ea_path(char *content, t_mlx_data *data)
 	}
 	while (ft_strncmp(tmp, "EA ", 3))
 	{
-		tmp = ft_strchr(&tmp[1], 'A');
+		tmp = ft_strchr(&tmp[1], 'E');
 		if (tmp == NULL)
 		{
 			write(2, "East texture not found\n", 23);

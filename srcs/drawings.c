@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 14:38:57 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/19 18:19:48 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/21 14:50:35 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,13 @@ void	floor_ceiling(t_mlx_data *mlx_data)
 {
 	int				x;
 	int				y;
-	unsigned long	sky;
-	unsigned long	floor;
 
-	sky = val_to_rgb(mlx_data, 168, 107, 14);
-	floor = val_to_rgb(mlx_data, 50, 29, 45);
 	x = -1;
 	y = 0;
 	while (y < (RES_Y / 2))
 	{
 		while (++x < RES_X)
-			my_mlx_pixel_put(&mlx_data->img, x, y, sky);
+			my_mlx_pixel_put(&mlx_data->img, x, y, mlx_data->sol_plaf.ceilling);
 		x = 0;
 		y++;
 	}
@@ -66,7 +62,7 @@ void	floor_ceiling(t_mlx_data *mlx_data)
 	while (y < RES_Y)
 	{
 		while (++x < RES_X)
-			my_mlx_pixel_put(&mlx_data->img, x, y, floor);
+			my_mlx_pixel_put(&mlx_data->img, x, y, mlx_data->sol_plaf.floor);
 		x = 0;
 		y++;
 	}

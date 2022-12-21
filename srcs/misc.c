@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:38:16 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/16 12:40:55 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/21 15:05:01 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	empty_key_tab(t_mlx_data *mlx_data, int keycode)
 
 int	mlx_close(t_mlx_data *mlx_data)
 {
+	free_data_map(mlx_data, NULL);
 	mlx_destroy_window(mlx_data->mlx, mlx_data->win);
 	exit(0);
 	return (0);
