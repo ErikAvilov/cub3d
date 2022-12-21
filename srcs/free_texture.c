@@ -81,6 +81,6 @@ void	verif_free_floor(t_mlx_data *data, char *content)
 void	free_2_player(t_mlx_data *data)
 {
 	free_all_parsing(data);
-	write(2, "2 player", 8);
+	write(2, "bad players\n", 12);
 	exit(1);
 }
