@@ -30,8 +30,7 @@ char	**map(char	*content, t_mlx_data *data)
 
 	player = 0;
 	idx = ft_strlen(content) - 1;
-	while (is_char_map(content[idx]) > 0 && (is_char_map(content[idx] != 3)
-			|| is_char_map(content[idx] != 3)))
+	while (is_char_map(content[idx]) > 0)
 	{
 		if (is_char_map(content[idx]) == 2)
 		{
