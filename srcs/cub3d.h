@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 21:51:43 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/19 18:24:49 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/20 08:46:12 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ typedef struct s_mlx_data
 	double				angle;
 	char				**map;
 	char				direction;
-	char				**paths;
+	char				*paths[4];
 	t_sol_plaf			sol_plaf;
 	t_textures			textures[4];
 	t_mouse_vars		mouse;

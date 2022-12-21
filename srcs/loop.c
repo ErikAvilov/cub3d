@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:22:09 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/19 18:01:24 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/20 08:48:10 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	draw_wall(t_mlx_data *mlx_data, t_vector_2d tl, t_vector_2d br, int color, 
 
 	y = tl.y;
 	double	tx_y = 0;
-	int tex = get_tex(mlx_data, &mlx_data->vector[index], &mlx_data->textures);
-	double step = mlx_data->textures.height / slice;
+	int tex = get_tex(mlx_data, &mlx_data->vector[index], &mlx_data->textures[0]);
+	double step = mlx_data->textures[0].height / slice;
 	while (y < br.y)
 	{
 		if (y < 0)
@@ -82,7 +82,7 @@ void	draw_wall(t_mlx_data *mlx_data, t_vector_2d tl, t_vector_2d br, int color, 
 			stripe = tl.x;
 			while (stripe < br.x)
 			{
-				int col = texture_pixel_color(&mlx_data->textures, tex, tx_y);
+				int col = texture_pixel_color(&mlx_data->textures[0], tex, tx_y);
 				my_mlx_pixel_put(&mlx_data->img, stripe, y, col);
 				stripe++;
 			}
@@ -147,42 +147,6 @@ void	check_mouse_rot(t_mlx_data *mlx_data)
 			rotate_right(mlx_data);
 		if (mlx_data->mouse.x < RES_X / 2)
 			rotate_left(mlx_data);
-	}
-}
-
-void	draw_image(t_mlx_data *mlx_data)
-{
-	int	x = 0;
-	int y = 0;
-	int color = 0;
-	while (y < mlx_data->textures.height)
-	{
-		while (x < mlx_data->textures.width)
-		{
-			color = texture_pixel_color(&mlx_data->textures, x, y);
-			my_mlx_pixel_put(&mlx_data->img, x, y, color);
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-}
-
-void	draw_image2(t_mlx_data *mlx_data)
-{
-	int	x = 0;
-	int y = 0;
-	int color = 0;
-	while (y < mlx_data->textures.height)
-	{
-		while (x < mlx_data->textures.width)
-		{
-			color = texture_pixel_color(&mlx_data->textures, x, y);
-			my_mlx_pixel_put(&mlx_data->img, x + 200, y + 200, color);
-			x++;
-		}
-		x = 0;
-		y++;
 	}
 }
 

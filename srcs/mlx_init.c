@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:48:15 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/19 18:24:28 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/21 13:36:33 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,16 +145,20 @@ void	textures_init(t_mlx_data *mlx_data)
 	int	i;
 
 	i = 0;
+	mlx_data->paths[0] = "assets/north.xpm";
+	mlx_data->paths[1] = "assets/south.xpm";
+	mlx_data->paths[2] = "assets/east.xpm";
+	mlx_data->paths[3] = "assets/west.xpm";
 	while (i < 4)
 	{
-		mlx_data->textures[0].image = mlx_xpm_file_to_image(mlx_data->mlx,
-	 		"assets/dot.xpm", &mlx_data->textures[0].width, &mlx_data->textures[0].height);
-		if (!mlx_data->textures[0].image)
+		mlx_data->textures[i].image = mlx_xpm_file_to_image(mlx_data->mlx,
+	 		mlx_data->paths[i], &mlx_data->textures[i].width, &mlx_data->textures[i].height);
+		if (!mlx_data->textures[i].image)
 			exit (printf("image not found\n"));
-		mlx_data->textures[0].text_adr = mlx_get_data_addr(mlx_data->textures[0].image,
-				&mlx_data->textures[0].bits_per_pixel, &mlx_data->textures[0].line_length,
-					&mlx_data->textures[0].endian);
-		if (!mlx_data->textures[0].text_adr)
+		mlx_data->textures[i].text_adr = mlx_get_data_addr(mlx_data->textures[i].image,
+				&mlx_data->textures[i].bits_per_pixel, &mlx_data->textures[i].line_length,
+					&mlx_data->textures[i].endian);
+		if (!mlx_data->textures[i].text_adr)
 			exit(printf("addr not found\n"));
 		i++;
 	}
