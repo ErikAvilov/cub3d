@@ -160,7 +160,7 @@ typedef struct s_mlx_data
 	double				angle;
 	char				**map;
 	char				direction;
-	char				**paths;
+	char				*paths[4];
 	t_sol_plaf			sol_plaf;
 	t_textures			textures[4];
 	t_mouse_vars		mouse;
