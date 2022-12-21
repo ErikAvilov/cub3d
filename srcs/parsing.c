@@ -81,8 +81,6 @@ int	parsing_file(char *file, t_mlx_data *data)
 		return (write(2, "Bad map format\n", 15));
 	content_file = read_all_file(open_verification(file, file));
 	all_textures_path(content_file, data);
-	free(data->paths[3]);
-	data->paths[3] = NULL;
 	check_malloc(data, content_file);
 	all_color(content_file, data);
 	parsing_map(content_file, data);

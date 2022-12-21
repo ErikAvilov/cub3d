@@ -108,8 +108,8 @@ void	check_malloc(t_mlx_data *data, char *content)
 				free(data->paths[idx]);
 			idx++;
 		}
+		free(content);
+		write(2, "fail malloc\n", 12);
+		exit(1);
 	}
-	free(content);
-	write(2, "fail malloc\n", 12);
-	exit(1);
 }
