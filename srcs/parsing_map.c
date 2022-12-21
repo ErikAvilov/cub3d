@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fdaumas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 07:21:43 by fdaumas           #+#    #+#             */
+/*   Updated: 2022/12/21 07:23:59 by fdaumas          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
-int		is_char_map(char c)
+int	is_char_map(char c)
 {
 	if (c == '0' || c == '1' || c == ' ')
 		return (1);
@@ -18,7 +30,7 @@ char	**map(char	*content, t_mlx_data *data)
 
 	player = 0;
 	idx = ft_strlen(content) - 1;
-	while(is_char_map(content[idx]) > 0)
+	while (is_char_map(content[idx]) > 0)
 	{
 		if (is_char_map(content[idx]) == 2)
 		{
@@ -29,17 +41,17 @@ char	**map(char	*content, t_mlx_data *data)
 		}
 		else if (is_char_map(content[idx]) == 3
 			&& is_char_map(content[idx - 1]) == 3)
-			break;
+			break ;
 		idx--;
 	}
-	while(content[idx] != '\n')
+	while (content[idx] != '\n')
 		idx++;
-	return(ft_split(&content[idx + 1], '\n'));
+	return (ft_split(&content[idx + 1], '\n'));
 }
 
 void	create_map(int nb_line, int len_max, char **map, t_mlx_data *data)
 {
-	int idx;
+	int	idx;
 
 	idx = 0;
 	data->map = malloc(sizeof(char *) * nb_line + 1);
@@ -71,10 +83,10 @@ void	get_map(char **map, t_mlx_data *data)
 
 	index_line = 0;
 	len_max = 0;
-	while(map[index_line])
+	while (map[index_line])
 	{
 		len_line = 0;
-		while(map[index_line][len_line])
+		while (map[index_line][len_line])
 			len_line++;
 		if (len_line > len_max)
 			len_max = len_line;
@@ -97,6 +109,4 @@ void	parsing_map(char *content, t_mlx_data *data)
 	}
 	get_map(init_map, data);
 	check_map(data);
-	for(int i = 0;data->map[i];i++)
-		printf("map = %s\n", data->map[i]);
 }

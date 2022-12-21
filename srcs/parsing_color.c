@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_color.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fdaumas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 07:21:28 by fdaumas           #+#    #+#             */
+/*   Updated: 2022/12/21 07:23:59 by fdaumas          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
-void	get_ceilling(char *content, t_mlx_data *data) {
-	int idx;
-	t_color_rgb rgb;
+void	get_ceilling(char *content, t_mlx_data *data)
+{
+	int			idx;
+	t_color_rgb	rgb;
 
 	verif_free_ceilling(data, content);
 	idx = 0;
@@ -94,7 +107,7 @@ void	color_floor(char *content, t_mlx_data *data)
 	get_floor(tmp, data);
 }
 
-void all_color(char *content, t_mlx_data *data)
+void	all_color(char *content, t_mlx_data *data)
 {
 	color_ceilling(content, data);
 	color_floor(content, data);

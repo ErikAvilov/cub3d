@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fdaumas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 07:22:36 by fdaumas           #+#    #+#             */
+/*   Updated: 2022/12/21 07:23:59 by fdaumas          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PARSING_H
 # define PARSING_H
 
-#include "functions.h"
+# include "functions.h"
 
 void	check_malloc(t_mlx_data *data, char *content);
 int		check_format(char *file, char *format, int len);

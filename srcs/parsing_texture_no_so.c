@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_texture_no_so.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fdaumas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 07:22:23 by fdaumas           #+#    #+#             */
+/*   Updated: 2022/12/21 07:23:59 by fdaumas          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 void	get_path_no(char *content, t_mlx_data *data)
@@ -7,7 +19,7 @@ void	get_path_no(char *content, t_mlx_data *data)
 
 	idx = 2;
 	while ((content[idx] >= 8 && content[idx] <= 13
-		&& content[idx] != 10) || content[idx] == 32)
+			&& content[idx] != 10) || content[idx] == 32)
 		idx++;
 	idx_len = 0;
 	while (!(content[idx + idx_len] >= 8 && content[idx + idx_len] <= 13))
@@ -54,7 +66,7 @@ void	get_path_so(char *content, t_mlx_data *data)
 
 void	so_path(char *content, t_mlx_data *data)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strchr(content, 'S');
 	if (tmp == NULL)

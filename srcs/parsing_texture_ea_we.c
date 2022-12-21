@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_texture_ea_we.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fdaumas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 07:22:02 by fdaumas           #+#    #+#             */
+/*   Updated: 2022/12/21 07:23:59 by fdaumas          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 void	get_path_ea(char *content, t_mlx_data *data)
@@ -17,7 +29,7 @@ void	get_path_ea(char *content, t_mlx_data *data)
 
 void	ea_path(char *content, t_mlx_data *data)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strchr(content, 'E');
 	if (tmp == NULL)
@@ -54,7 +66,7 @@ void	get_path_we(char *content, t_mlx_data *data)
 
 void	we_path(char *content, t_mlx_data *data)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_strchr(content, 'W');
 	if (tmp == NULL)
@@ -81,16 +93,16 @@ void	check_malloc(t_mlx_data *data, char *content)
 
 	idx = 0;
 	fail = 0;
-	while(idx < 4)
+	while (idx < 4)
 	{
 		if (data->paths[idx] == NULL)
 			fail = 1;
 		idx++;
 	}
-	if(fail)
+	if (fail)
 	{
 		idx = 0;
-		while(idx < 4)
+		while (idx < 4)
 		{
 			if (data->paths[idx] != NULL)
 				free(data->paths[idx]);

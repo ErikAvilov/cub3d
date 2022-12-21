@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fdaumas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 07:20:47 by fdaumas           #+#    #+#             */
+/*   Updated: 2022/12/21 07:23:59 by fdaumas          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 char	*ft_strjoin_cub(char *s1, char *s2)
@@ -23,7 +35,7 @@ char	*ft_strjoin_cub(char *s1, char *s2)
 	return (ns);
 }
 
-int		open_verification(char *file, char *msg)
+int	open_verification(char *file, char *msg)
 {
 	int	fd;
 
@@ -63,7 +75,7 @@ char	*read_all_file(int fd)
 
 int	parsing_file(char *file, t_mlx_data *data)
 {
-	char *content_file;
+	char	*content_file;
 
 	if (check_format(file, ".cub\0", 5) == 1)
 		return (write(2, "Bad map format\n", 15));
@@ -78,7 +90,7 @@ int	parsing_file(char *file, t_mlx_data *data)
 	return (0);
 }
 
-int main(void)
+int	main(void)
 {
 	t_mlx_data	data;
 
@@ -94,6 +106,8 @@ int main(void)
 	ft_putchar(10);
 	printf("ceilling val = %zu\n", data.sol_plaf.ceilling);
 	printf("floor val = %zu\n", data.sol_plaf.floor);
+	for(int i = 0;data.map[i];i++)
+		printf("map = %s\n", data.map[i]);
 	free_data_map(&data, NULL);
 	return (0);
 }

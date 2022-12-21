@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_check.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fdaumas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 07:21:06 by fdaumas           #+#    #+#             */
+/*   Updated: 2022/12/21 07:23:59 by fdaumas          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parsing.h"
 
 int	check_format(char *file, char *format, int len)
@@ -18,7 +30,7 @@ int	check_format(char *file, char *format, int len)
 
 void	check_texture_path(t_mlx_data *data)
 {
-	int error;
+	int	error;
 
 	error = 0;
 	if (check_format(data->paths[0], ".xpm", 4))
@@ -59,7 +71,7 @@ void	check_line(t_mlx_data *data, int line)
 	idx = 0;
 	while (data->map[line][idx])
 	{
-		if(is_0(data->map[line][idx]))
+		if (is_0(data->map[line][idx]))
 			free_data_map(data, "map not closed\n");
 		idx++;
 	}
@@ -76,11 +88,11 @@ void	check_map(t_mlx_data *data)
 	idx_line--;
 	check_line(data, idx_line);
 	check_line(data, 0);
-	while(idx_line > 1)
+	while (idx_line > 1)
 	{
 		idx_char = 1;
 		idx_line--;
-		while(data->map[idx_line][idx_char])
+		while (data->map[idx_line][idx_char])
 		{
 			if (is_0(data->map[idx_line][idx_char]))
 				if (data->map[idx_line][idx_char + 1] == ' '
