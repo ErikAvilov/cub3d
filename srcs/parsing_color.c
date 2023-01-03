@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdaumas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 07:21:28 by fdaumas           #+#    #+#             */
-/*   Updated: 2022/12/21 07:23:59 by fdaumas          ###   ########lyon.fr   */
+/*   Updated: 2022/12/22 16:17:10 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	get_ceilling(char *content, t_mlx_data *data)
 		write(2, "Bad Ceilling color\n", 19);
 		exit(1);
 	}
-	data->sol_plaf.ceilling = val_to_rgb(data, rgb.r, rgb.g, rgb.b);
+	data->sol_plaf.ceilling = val_to_rgb(rgb.r, rgb.g, rgb.b);
 }
 
 void	color_ceilling(char *content, t_mlx_data *data)
@@ -82,7 +82,7 @@ void	get_floor(char *content, t_mlx_data *data)
 		write(2, "Bad floor color\n", 16);
 		exit(1);
 	}
-	data->sol_plaf.floor = val_to_rgb(data, rgb.r, rgb.g, rgb.b);
+	data->sol_plaf.floor = val_to_rgb(rgb.r, rgb.g, rgb.b);
 }
 
 void	color_floor(char *content, t_mlx_data *data)

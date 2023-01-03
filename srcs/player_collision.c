@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 11:49:04 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/17 14:31:28 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/22 16:15:51 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,11 +130,6 @@ int	check_right(t_mlx_data *mlx_data)
 
 int	blocked(t_mlx_data *mlx_data, int keycode)
 {
-	int	x;
-	int	y;
-	int	x1;
-	int	y1;
-
 	if (keycode == K_W)
 	{
 		if (check_up(mlx_data))

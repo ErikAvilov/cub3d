@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:38:16 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/21 15:05:01 by eavilov          ###   ########.fr       */
+/*   Updated: 2023/01/02 09:02:13 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x >= RES_X || y >= RES_Y)
+		dprintf(1, "x: %d y: %d\n", x, y);
+	if (x < 0 || y < 0)
+		dprintf(1, "x: %d y: %d\n", x, y);
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }

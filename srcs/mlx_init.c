@@ -6,87 +6,11 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:48:15 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/21 14:55:48 by eavilov          ###   ########.fr       */
+/*   Updated: 2023/01/02 09:58:24 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "functions.h"
-
-int	is_char(char c)
-{
-	if (c == 'N')
-		return (1);
-	if (c == 'S')
-		return (1);
-	if (c == 'E')
-		return (1);
-	if (c == 'W')
-		return (1);
-	return (0);
-}
-
-t_vector_2f	set_pos(t_mlx_data *mlx_data)
-{
-	t_vector_2f	pos;
-	int			x;
-	int			y;
-
-	x = 0;
-	y = 0;
-	while (mlx_data->map[y])
-	{
-		while (mlx_data->map[y][x])
-		{
-			if(is_char(mlx_data->map[y][x]))
-			{
-				pos.x += 20;
-				pos.y += 20;
-				return (pos);
-			}
-			x++;
-			pos.x += 40;
-		}
-		pos.y += 40;
-		pos.x = 0;
-		x = 0;
-		y++;
-	}
-	pos.x = RES_X / 2;
-	pos.y = RES_Y / 2;
-	printf("default pos\n");
-	return (pos);
-}
-
-t_vector_2d	player_init(t_mlx_data *mlx_data)
-{
-	t_vector_2d	dir;
-	char		c;
-
-	c = 'N';
-	mlx_data->player.pos = set_pos(mlx_data);
-	mlx_data->player.view_dst = 100;
-	if (c == 'N')
-	{
-		dir.x = 0;
-		dir.y = -100;
-	}
-	else if (c == 'S')
-	{
-		dir.x = 0;
-		dir.y = 100;
-	}
-	else if (c == 'E')
-	{
-		dir.x = 100;
-		dir.y = 0;
-	}
-	else if (c == 'W')
-	{
-		dir.x = -100;
-		dir.y = 0;
-	}
-	return (dir);
-}
 
 void	screen_init(t_mlx_data *mlx_data)
 {
@@ -102,21 +26,7 @@ void	screen_init(t_mlx_data *mlx_data)
 	mlx_data->rays.gap = 1 / (mlx_data->rays.amount * 0.5);
 }
 
-void	map_init(t_mlx_data *mlx_data)
-{
-	int		file;
-	int		rd;
-	char	map[100000];
-	int		i1;
-	int		i2;
-
-	file = open("maps/map2.cub", O_RDONLY);
-	rd = read(file, map, 100000);
-	map[rd] = '\0';
-	mlx_data->map = ft_split(map, '\n');
-}
-
-void	value_init(t_mlx_data *mlx_data)
+void	value_init(t_mlx_data *mlx_data, char **av)
 {
 	int			i;
 	t_vector_2d	dir;
@@ -127,15 +37,14 @@ void	value_init(t_mlx_data *mlx_data)
 		mlx_data->moves.key[i] = -1;
 	mlx_data->mouse.x = -1;
 	mlx_data->mouse.zone = 0;
-	if (parsing_file("./maps/maptest.cub", mlx_data))
+	if (parsing_file(av[1], mlx_data))
 		exit(1);
-//	map_init(mlx_data);
 	dir = player_init(mlx_data);
 	screen_init(mlx_data);
 	mlx_data->vector[0] = dda(mlx_data, mlx_data->player.pos.x + dir.x,
-			mlx_data->player.pos.y + dir.y);
-	mlx_data->angle = find_angle(mlx_data, mlx_data->vector[0].x,
-			mlx_data->vector[0].y);
+			mlx_data->player.pos.y + dir.y, 0);
+	mlx_data->angle = get_angle(mlx_data, mlx_data->player.pos,
+			mlx_data->vector[0]);
 	mlx_data->moves.newdir.x = cos(-mlx_data->angle) * cos(-PI2)
 		- sin(-mlx_data->angle) * sin(-PI2);
 	mlx_data->moves.newdir.y = cos(-mlx_data->angle) * sin(-PI2)
@@ -147,20 +56,18 @@ void	textures_init(t_mlx_data *mlx_data)
 	int	i;
 
 	i = 0;
-	// mlx_data->paths[0] = "assets/diamond.xpm";
-	// mlx_data->paths[1] = "assets/astro.xpm";
-	// mlx_data->paths[2] = "assets/dot.xpm";
-	// mlx_data->paths[3] = "assets/west.xpm";
 	while (i < 4)
 	{
-		printf("checking %s\n", mlx_data->paths[i]);
 		mlx_data->textures[i].image = mlx_xpm_file_to_image(mlx_data->mlx,
-	 		mlx_data->paths[i], &mlx_data->textures[i].width, &mlx_data->textures[i].height);
+				mlx_data->paths[i], &mlx_data->textures[i].width,
+				&mlx_data->textures[i].height);
 		if (!mlx_data->textures[i].image)
 			exit (printf("image not found\n"));
-		mlx_data->textures[i].text_adr = mlx_get_data_addr(mlx_data->textures[i].image,
-				&mlx_data->textures[i].bits_per_pixel, &mlx_data->textures[i].line_length,
-					&mlx_data->textures[i].endian);
+		mlx_data->textures[i].text_adr
+			= mlx_get_data_addr(mlx_data->textures[i].image,
+				&mlx_data->textures[i].bits_per_pixel,
+				&mlx_data->textures[i].line_length,
+				&mlx_data->textures[i].endian);
 		if (!mlx_data->textures[i].text_adr)
 			exit(printf("addr not found\n"));
 		mlx_data->textures[i].side = i;
@@ -168,13 +75,16 @@ void	textures_init(t_mlx_data *mlx_data)
 	}
 }
 
-void	window_init(t_mlx_data *mlx_data)
+void	check_args(int ac)
 {
-	int	dimension[2];
+	if (ac != 2)
+		exit (printf("wrong arg amount\n"));
+}
 
-	value_init(&*mlx_data);
-	dimension[0] = 0;
-	dimension[1] = 0;
+void	window_init(t_mlx_data *mlx_data, int ac, char **av)
+{
+	check_args(ac);
+	value_init(&*mlx_data, av);
 	mlx_data->mlx = mlx_init();
 	textures_init(mlx_data);
 	mlx_data->win = mlx_new_window(mlx_data->mlx, mlx_data->res.res[0],

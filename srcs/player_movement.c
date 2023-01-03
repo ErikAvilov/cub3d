@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:13:45 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/16 15:32:57 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/21 17:17:50 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	check_action(t_mlx_data *mlx_data)
 {
 	double	speed;
 
-	speed = 3.75f;
+	speed = 5.0f;
 	if (is_pressed(mlx_data->moves.key, K_W) && !blocked(mlx_data, K_W))
 		move_front(mlx_data, speed);
 	if (is_pressed(mlx_data->moves.key, K_S) && !blocked(mlx_data, K_S))

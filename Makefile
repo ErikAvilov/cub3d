@@ -6,7 +6,7 @@
 #    By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 21:52:54 by eavilov           #+#    #+#              #
-#    Updated: 2022/12/21 15:05:38 by eavilov          ###   ########.fr        #
+#    Updated: 2023/01/02 11:33:10 by eavilov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,15 +33,11 @@ UNDERLINE=\033[4m
 
 NAME	= cub3d
 
-MAIN	= srcs/main.c
-
-SRCS	= $(MAIN) \
+SRCS	= srcs/main.c \
 		srcs/mlx_init.c \
 		srcs/pressing.c \
-		srcs/bresenham.c \
 		srcs/loop.c \
 		srcs/misc.c \
-		srcs/rays_algo.c \
 		srcs/drawings.c \
 		srcs/mouse.c \
 		srcs/rays.c \
@@ -60,7 +56,9 @@ SRCS	= $(MAIN) \
 		srcs/parsing_texture_no_so.c \
 		srcs/free_map.c \
 		srcs/free_texture.c \
-		srcs/strcomplete.c
+		srcs/strcomplete.c \
+		srcs/display.c \
+		srcs/player_init.c
 
 HEADER	= srcs/cub3d.h \
 		srcs/functions.h \
@@ -75,7 +73,7 @@ LIBFT	= my_libft/libft.a
 OBJS	= $(patsubst srcs/%.c, objs/%.o, $(SRCS))
 MLX		= -I libx/minilibx_opengl_20191021/ -framework OpenGL -framework AppKit
 LIBMLX 	= libx/minilibx_opengl_20191021/libmlx.a
-CFLAGS	=
+CFLAGS	= -Wextra -Werror -Wall -fsanitize=address
 CC		= gcc
 RM		= rm -rf
 
@@ -84,7 +82,7 @@ all:	${NAME} ${LIBFT}
 ${NAME}:	${OBJS} ${HEADER} ${LIBFT} Makefile
 	${MAKE} -C libx/minilibx_opengl_20191021
 	${CC} ${CFLAGS} ${MLX} ${OBJS} ${LIBMLX} ${LIBFT} -o $@
-	printf "${ERASE}${FAINT}${CC} ${CFLAGS} -c -o ${RESET} ${CYAN} ${BOLD}$@ ${RESET} ${FAINT} ${BLUE}$< ${RESET}"
+	printf "${ERASE} ${FAINT} ${CC} ${CFLAGS} -c -o ${RESET} ${CYAN} ${BOLD}$@ ${RESET} ${FAINT} ${BLUE}$< ${RESET}"
 
 objs/%.o : srcs/%.c ${HEADER}
 	$(CC) -c -o $@ $< $(CFLAGS)

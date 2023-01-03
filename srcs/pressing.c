@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 09:26:13 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/16 15:10:52 by eavilov          ###   ########.fr       */
+/*   Updated: 2022/12/21 16:49:45 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	key_press(int keycode, t_mlx_data *mlx_data)
 		else
 			mlx_data->mouse.zone = 0;
 	}
-	if (keycode == K_X)
-		printf("pos.x: %d pos.y: %d\n", (int)mlx_data->player.pos.x, (int)mlx_data->player.pos.y);
 	if (keycode == 53)
 		mlx_close(mlx_data);
 	return (1);

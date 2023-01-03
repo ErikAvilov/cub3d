@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 12:28:35 by eavilov           #+#    #+#             */
-/*   Updated: 2022/12/21 14:00:57 by eavilov          ###   ########.fr       */
+/*   Updated: 2023/01/02 07:26:06 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,17 @@ t_vector_2f	lerp(t_vector_2f start, t_vector_2f end, float i)
 	return (vect);
 }
 
-unsigned long	val_to_rgb(t_mlx_data *mlx_data, int r, int g, int b)
+unsigned long	val_to_rgb(int r, int g, int b)
 {
 	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
 }
 
 int	texture_pixel_color(t_textures *text, int x, int y)
 {
-	return (*(int *)(text->text_adr + (y * text->line_length) + (x * text->bits_per_pixel / 8)));
+	if (x < 0 || x > text->width)
+		exit (printf("ERROR\n"));
+	if (y < 0 || y > text->height)
+		exit (printf("ERROR2\n"));
+	return (*(int *)(text->text_adr + (y * text->line_length)
+		+ (x * text->bits_per_pixel / 8)));
 }
