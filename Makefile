@@ -6,7 +6,7 @@
 #    By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 21:52:54 by eavilov           #+#    #+#              #
-#    Updated: 2023/01/02 11:33:10 by eavilov          ###   ########.fr        #
+#    Updated: 2023/01/14 17:11:21 by eavilov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ LIBFT	= my_libft/libft.a
 OBJS	= $(patsubst srcs/%.c, objs/%.o, $(SRCS))
 MLX		= -I libx/minilibx_opengl_20191021/ -framework OpenGL -framework AppKit
 LIBMLX 	= libx/minilibx_opengl_20191021/libmlx.a
-CFLAGS	= -Wextra -Werror -Wall -fsanitize=address
+CFLAGS	= -Wextra -Werror -Wall -fsanitize=address -Ofast -march=native
 CC		= gcc
 RM		= rm -rf
 
@@ -95,6 +95,9 @@ ${LIBFT}:	my_libft/Makefile
 #--------------------------------------------------------#
 #					--	 MAKE COMMANDS	--			 	 #
 #--------------------------------------------------------#
+
+bonus:
+	${NAME} ${LIBFT}
 
 clean:
 	${RM} ${OBJS} ${LIBMLX}

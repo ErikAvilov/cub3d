@@ -6,7 +6,7 @@
 /*   By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 08:48:15 by eavilov           #+#    #+#             */
-/*   Updated: 2023/01/02 09:58:24 by eavilov          ###   ########.fr       */
+/*   Updated: 2023/01/09 12:47:59 by eavilov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,10 @@ void	textures_init(t_mlx_data *mlx_data)
 
 void	check_args(int ac)
 {
-	if (ac != 2)
-		exit (printf("wrong arg amount\n"));
+	(void) ac;
+	// if (ac != 2)
+	// 	exit (printf("wrong arg amount\n"));
+	return ;
 }
 
 void	window_init(t_mlx_data *mlx_data, int ac, char **av)
