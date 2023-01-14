@@ -6,7 +6,7 @@
 #    By: eavilov <eavilov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/09 21:52:54 by eavilov           #+#    #+#              #
-#    Updated: 2023/01/14 17:11:21 by eavilov          ###   ########.fr        #
+#    Updated: 2023/01/14 17:12:09 by eavilov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,9 +84,12 @@ ${NAME}:	${OBJS} ${HEADER} ${LIBFT} Makefile
 	${CC} ${CFLAGS} ${MLX} ${OBJS} ${LIBMLX} ${LIBFT} -o $@
 	printf "${ERASE} ${FAINT} ${CC} ${CFLAGS} -c -o ${RESET} ${CYAN} ${BOLD}$@ ${RESET} ${FAINT} ${BLUE}$< ${RESET}"
 
-objs/%.o : srcs/%.c ${HEADER}
+objs/%.o : srcs/%.c ${HEADER} | dir_objs
 	$(CC) -c -o $@ $< $(CFLAGS)
 	printf "${ERASE} ${FAINT} ${CC} ${CFLAGS} -c -o ${RESET} ${CYAN} ${BOLD}$@ ${RESET} ${FAINT} ${BLUE}$< ${RESET}"
+
+dir_objs :
+	mkdir -p objs
 
 ${LIBFT}:	my_libft/Makefile
 	$(MAKE) -j 3 -C my_libft/
@@ -101,6 +104,7 @@ bonus:
 
 clean:
 	${RM} ${OBJS} ${LIBMLX}
+	rm -rf objs
 	make clean -C my_libft/
 
 norm: 
