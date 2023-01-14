@@ -73,7 +73,7 @@ LIBFT	= my_libft/libft.a
 OBJS	= $(patsubst srcs/%.c, objs/%.o, $(SRCS))
 MLX		= -I libx/minilibx_opengl_20191021/ -framework OpenGL -framework AppKit
 LIBMLX 	= libx/minilibx_opengl_20191021/libmlx.a
-CFLAGS	= -Wextra -Werror -Wall -fsanitize=address
+CFLAGS	= -Wextra -Werror -Wall -Ofast -march=native
 CC		= gcc
 RM		= rm -rf
 
@@ -84,9 +84,12 @@ ${NAME}:	${OBJS} ${HEADER} ${LIBFT} Makefile
 	${CC} ${CFLAGS} ${MLX} ${OBJS} ${LIBMLX} ${LIBFT} -o $@
 	printf "${ERASE} ${FAINT} ${CC} ${CFLAGS} -c -o ${RESET} ${CYAN} ${BOLD}$@ ${RESET} ${FAINT} ${BLUE}$< ${RESET}"
 
-objs/%.o : srcs/%.c ${HEADER}
+objs/%.o : srcs/%.c ${HEADER} | dir_objs
 	$(CC) -c -o $@ $< $(CFLAGS)
 	printf "${ERASE} ${FAINT} ${CC} ${CFLAGS} -c -o ${RESET} ${CYAN} ${BOLD}$@ ${RESET} ${FAINT} ${BLUE}$< ${RESET}"
+
+dir_objs : dir_objs
+	mkdir objs
 
 ${LIBFT}:	my_libft/Makefile
 	$(MAKE) -j 3 -C my_libft/
@@ -98,6 +101,7 @@ ${LIBFT}:	my_libft/Makefile
 
 clean:
 	${RM} ${OBJS} ${LIBMLX}
+	rm -rf objs
 	make clean -C my_libft/
 
 norm: 
