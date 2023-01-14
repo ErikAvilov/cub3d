@@ -64,8 +64,8 @@ char	*read_all_file(int fd)
 	end_read = 1024;
 	while (end_read == 1024)
 	{
-		end_read = read(fd, buf, 1024);
-		buf[end_read] = '\0';
+		end_read = read(fd, buf, 1023);
+		buf[end_read - 1] = '\0';
 		file = ft_strjoin_cub(file, buf);
 		if (file == NULL)
 			exit (write(2, "fail malloc\n", 12));

@@ -56,7 +56,7 @@ void	create_map(int nb_line, int len_max, char **map, t_mlx_data *data)
 	int	idx;
 
 	idx = 0;
-	data->map = malloc(sizeof(char *) * nb_line + 1);
+	data->map = malloc(sizeof(char *) * (nb_line + 1));
 	if (!data->map)
 		free_map(map, data, 1);
 	data->map[nb_line] = NULL;
