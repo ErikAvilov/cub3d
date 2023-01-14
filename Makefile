@@ -88,8 +88,8 @@ objs/%.o : srcs/%.c ${HEADER} | dir_objs
 	$(CC) -c -o $@ $< $(CFLAGS)
 	printf "${ERASE} ${FAINT} ${CC} ${CFLAGS} -c -o ${RESET} ${CYAN} ${BOLD}$@ ${RESET} ${FAINT} ${BLUE}$< ${RESET}"
 
-dir_objs : dir_objs
-	mkdir objs
+dir_objs :
+	mkdir -p objs
 
 ${LIBFT}:	my_libft/Makefile
 	$(MAKE) -j 3 -C my_libft/
