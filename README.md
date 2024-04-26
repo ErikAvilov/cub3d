@@ -40,7 +40,7 @@ The floor and ceiling are simply random colors printed on each halves of the win
 
 In this image, the player checks for the presence of walls on a single ray. <br>
 Instead of checking each pixel to find the wall, we will increment a certain [x,y] value to the player's coordinates. <br>
-Once we incremented them, we simply check where we are on the grid, is it a '1' or a '0' ? If it's a '0'. we increment again, if it's a '1', we stop and check the next ray. <br>
+Once we've incremented them, we simply check where we are on the grid, is it a '1' or a '0' ? If it's a '0', we increment again, if it's a '1', we stop and check the next ray. <br>
 Finding the value for the intervals between each jumps is left at your discretion, although you can find the answers here, I strongly suggest you figure it out yourself. <br>
 
 <img src="https://i.stack.imgur.com/TXHJB.png" style="width:50%;"></img>
