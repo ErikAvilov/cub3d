@@ -16,7 +16,7 @@ What is a DDA (quite important), what does the "ray" in raycasting means and how
 ### To start off, what is raycasting ? <br>
 To simulate a 3D environment, 40+ years ago, people thought about putting a player in a grid, filled with zeros and ones. Every '1' is a wall and every '0' is a walkable area. <br>
 The player will send hundreds if not thousands of rays in a specific field of view, and verify each pixel to check where the wall is on the grid. <br>
-There is just as much rays as there pixels in the screen width, so for a 1920x1080 resolution, we would used 1920 rays in a field of view of 60. <br>
+There is just as much rays as there are pixels in the screen width, so for a 1920x1080 resolution, we would use 1920 rays in a field of view of 60. <br>
 
 ### What is a DDA ? <br>
 The problem with that system, is that it's SLOW, painfully SLOW. <br>
