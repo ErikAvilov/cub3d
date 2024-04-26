@@ -33,7 +33,7 @@ Since this is a school project, I do not intend on giving the answers but rather
 
 
 Here in a picture that I totally didn't snag from google, you have a clear representation of raycasting. <br>
-The bottom left map is simply a representation of the system, but as you can see, the walls appearance and their size depends on the distance between the player and them. <br>
+The bottom left map is simply a representation of the system, but as you can see, the appearance of the walls and their size depends on the distance between the player and them. <br>
 The floor and ceiling are simply random colors printed on each halves of the window before the walls are displayed. <br>
 
 <img src="http://jackkelly.name/blog/images/learning-to-raycast-in-haskell/basic_shading.png"></img>
