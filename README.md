@@ -24,7 +24,7 @@ So in the 90's, John Carmack came up with the idea of checking the presence of w
 This is better explained with an image, so stick around until the end. <br>
 
 ### How to rotate/move the player ? <br>
-The map is strictly two dimensional, so only an [x,y] plane. However, rotating means turning in a circle, or 360°. <br>
+The map is strictly two dimensional, so only a [x,y] plane. However, rotating means turning in a circle, or 360°. <br>
 In this context, a circle is not represented as a 360° sphere, but rather four quadrants, each measuring 1/2 of π, so a complete rotation will reasult in π². <br>
 Moving the player simply involves changing his [x,y] coordinates, depending on the direction he's looking at. <br>
 
