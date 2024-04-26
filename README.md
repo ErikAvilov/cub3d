@@ -30,3 +30,16 @@ Moving the player simply involves changing his [x,y] coordinates, depending on t
 Explaining in detail the formulas here is not the point, but to understand how it works and differs from conventional math.
 Since this is a school project, I do not intend on giving the answers but rather encourage you by finding them yourself.
 
+
+Here in a picture that I totally didn't snag from google, you have a clear representation of raycasting.
+The bottom left map is simply a representation of the system, but as you can see, the walls appearance and their size depends on the distance between the player and them.
+The floor and ceiling are simply random colors printed on each halves of the window before the walls are displayed.
+
+<img src="http://jackkelly.name/blog/images/learning-to-raycast-in-haskell/basic_shading.png"></img>
+
+In this image, the player check for the presence of walls on a single ray.
+Instead of checking each pixel to find the wall, we will increment a certain [x,y] value to the player's coordinates.
+Once we incremented them, we simply check where we are on the grid, is it a '1' or a '0' ? If it's a '0'. we increment again, if it's a '1', we stop and check the next ray.
+Finding the value for the intervals between each jumps is left at your discretion, although you can find the answers here, I strongly suggest you figure it out yourself.
+
+<img src="https://i.stack.imgur.com/TXHJB.png" style="width:50%;"></img>
